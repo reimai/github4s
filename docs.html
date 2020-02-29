@@ -1,4 +1,4 @@
-<html><head><title>Github4s: Getting Started</title><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Github4s contributors" /><meta name="description" content="Github API wrapper written in Scala" /><meta name="og:image" content="/github4s/img/poster.png" /><meta name="image" property="og:image" content="/github4s/img/poster.png" /><meta name="og:title" content="Github4s: Getting Started" /><meta name="title" property="og:title" content="Github4s: Getting Started" /><meta name="og:site_name" content="Github4s" /><meta name="og:url" content="https://47deg.github.io/github4s/" /><meta name="og:type" content="website" /><meta name="og:description" content="Github API wrapper written in Scala" /><link rel="icon" type="image/png" href="/github4s/img/favicon.png" /><meta name="twitter:title" content="Github4s: Getting Started" /><meta name="twitter:image" content="/github4s/img/poster.png" /><meta name="twitter:description" content="Github API wrapper written in Scala" /><meta name="twitter:card" content="summary_large_image" /><link rel="icon" type="image/png" sizes="16x16" href="/github4s/img/favicon16x16.png" /><link rel="icon" type="image/png" sizes="24x24" href="/github4s/img/favicon24x24.png" /><link rel="icon" type="image/png" sizes="32x32" href="/github4s/img/favicon32x32.png" /><link rel="icon" type="image/png" sizes="48x48" href="/github4s/img/favicon48x48.png" /><link rel="icon" type="image/png" sizes="57x57" href="/github4s/img/favicon57x57.png" /><link rel="icon" type="image/png" sizes="60x60" href="/github4s/img/favicon60x60.png" /><link rel="icon" type="image/png" sizes="64x64" href="/github4s/img/favicon64x64.png" /><link rel="icon" type="image/png" sizes="70x70" href="/github4s/img/favicon70x70.png" /><link rel="icon" type="image/png" sizes="72x72" href="/github4s/img/favicon72x72.png" /><link rel="icon" type="image/png" sizes="76x76" href="/github4s/img/favicon76x76.png" /><link rel="icon" type="image/png" sizes="96x96" href="/github4s/img/favicon96x96.png" /><link rel="icon" type="image/png" sizes="114x114" href="/github4s/img/favicon114x114.png" /><link rel="icon" type="image/png" sizes="120x120" href="/github4s/img/favicon120x120.png" /><link rel="icon" type="image/png" sizes="128x128" href="/github4s/img/favicon128x128.png" /><link rel="icon" type="image/png" sizes="144x144" href="/github4s/img/favicon144x144.png" /><link rel="icon" type="image/png" sizes="150x150" href="/github4s/img/favicon150x150.png" /><link rel="icon" type="image/png" sizes="152x152" href="/github4s/img/favicon152x152.png" /><link rel="icon" type="image/png" sizes="196x196" href="/github4s/img/favicon196x196.png" /><link rel="icon" type="image/png" sizes="310x310" href="/github4s/img/favicon310x310.png" /><link rel="icon" type="image/png" sizes="310x150" href="/github4s/img/favicon310x150.png" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /><link rel="stylesheet" href="/github4s/highlight/styles/vs.css" /><link rel="stylesheet" href="/github4s/css/light-style.css" /></head><body class="docs"><div id="wrapper"><div id="sidebar-wrapper"><div id="sidebar-brand"><a href="/github4s/" class="brand"><div class="brand-wrapper"></div><span>Github4s</span></a><button id="main-toggle" class="sidebar-toggle"><span class="close"></span></button></div><div class="sidebar-nav"> <div class="sidebar-nav-item active "><a href="/github4s/docs" title="Getting Started" class="active">Getting Started</a></div> <div class="sidebar-nav-item  "><a href="/github4s/auth" title="Authorization API" class="">Authorization API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/gist" title="Gist API" class="">Gist API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/git_data" title="Git Data API" class="">Git Data API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/issue" title="Issue API" class="">Issue API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/pull_request" title="Pull Request API" class="">Pull Request API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/user" title="User API" class="">User API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/repository" title="Repository API" class="">Repository API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/activity" title="Activity API" class="">Activity API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/organization" title="Organization API" class="">Organization API</a></div></div></div><div id="page-content-wrapper"><div class="nav"><div class="container-fluid"><div class="row"><div class="col-lg-12"><div class="action-menu pull-left clearfix"><a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a></div><ul class="pull-right"><li id="gh-eyes-item" class="hidden-xs"><a href="https://github.com/47deg/github4s" target="_blank" rel="noopener noreferrer"><i class="fa fa-eye"></i><span>Watchers<span id="eyes" class="label label-default">--</span></span></a></li><li id="gh-stars-item" class="hidden-xs"><a href="https://github.com/47deg/github4s" target="_blank" rel="noopener noreferrer"><i class="fa fa-star-o"></i><span>Stars<span id="stars" class="label label-default">--</span></span></a></li></ul></div></div></div></div><div id="content" data-github-owner="47deg" data-github-repo="github4s"><div class="content-wrapper"><section><h1 id="getting-started">Getting started</h1>
+<!DOCTYPE html><html><head><title>Github4s: Getting Started</title><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Github4s contributors" /><meta name="description" content="Github API wrapper written in Scala" /><meta name="og:image" content="/github4s/img/poster.png" /><meta name="image" property="og:image" content="/github4s/img/poster.png" /><meta name="og:title" content="Github4s: Getting Started" /><meta name="title" property="og:title" content="Github4s: Getting Started" /><meta name="og:site_name" content="Github4s" /><meta name="og:url" content="https://47deg.github.io/github4s/" /><meta name="og:type" content="website" /><meta name="og:description" content="Github API wrapper written in Scala" /><link rel="icon" type="image/png" href="/github4s/img/favicon.png" /><meta name="twitter:title" content="Github4s: Getting Started" /><meta name="twitter:image" content="/github4s/img/poster.png" /><meta name="twitter:description" content="Github API wrapper written in Scala" /><meta name="twitter:card" content="summary_large_image" /><link rel="icon" type="image/png" sizes="16x16" href="/github4s/img/favicon16x16.png" /><link rel="icon" type="image/png" sizes="24x24" href="/github4s/img/favicon24x24.png" /><link rel="icon" type="image/png" sizes="32x32" href="/github4s/img/favicon32x32.png" /><link rel="icon" type="image/png" sizes="48x48" href="/github4s/img/favicon48x48.png" /><link rel="icon" type="image/png" sizes="57x57" href="/github4s/img/favicon57x57.png" /><link rel="icon" type="image/png" sizes="60x60" href="/github4s/img/favicon60x60.png" /><link rel="icon" type="image/png" sizes="64x64" href="/github4s/img/favicon64x64.png" /><link rel="icon" type="image/png" sizes="70x70" href="/github4s/img/favicon70x70.png" /><link rel="icon" type="image/png" sizes="72x72" href="/github4s/img/favicon72x72.png" /><link rel="icon" type="image/png" sizes="76x76" href="/github4s/img/favicon76x76.png" /><link rel="icon" type="image/png" sizes="96x96" href="/github4s/img/favicon96x96.png" /><link rel="icon" type="image/png" sizes="114x114" href="/github4s/img/favicon114x114.png" /><link rel="icon" type="image/png" sizes="120x120" href="/github4s/img/favicon120x120.png" /><link rel="icon" type="image/png" sizes="128x128" href="/github4s/img/favicon128x128.png" /><link rel="icon" type="image/png" sizes="144x144" href="/github4s/img/favicon144x144.png" /><link rel="icon" type="image/png" sizes="150x150" href="/github4s/img/favicon150x150.png" /><link rel="icon" type="image/png" sizes="152x152" href="/github4s/img/favicon152x152.png" /><link rel="icon" type="image/png" sizes="196x196" href="/github4s/img/favicon196x196.png" /><link rel="icon" type="image/png" sizes="310x310" href="/github4s/img/favicon310x310.png" /><link rel="icon" type="image/png" sizes="310x150" href="/github4s/img/favicon310x150.png" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /><link rel="stylesheet" href="/github4s/highlight/styles/vs.css" /><link rel="stylesheet" href="/github4s/css/light-style.css" /></head><body class="docs"><div id="wrapper"><div id="sidebar-wrapper"><div id="sidebar-brand"><a href="/github4s/" class="brand"><div class="brand-wrapper"></div><span>Github4s</span></a><button id="main-toggle" class="sidebar-toggle"><span class="close"></span></button></div><div class="sidebar-nav"> <div class="sidebar-nav-item active "><a href="/github4s/docs" title="Getting Started" class="active">Getting Started</a></div> <div class="sidebar-nav-item  "><a href="/github4s/auth" title="Authorization API" class="">Authorization API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/gist" title="Gist API" class="">Gist API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/git_data" title="Git Data API" class="">Git Data API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/issue" title="Issue API" class="">Issue API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/pull_request" title="Pull Request API" class="">Pull Request API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/user" title="User API" class="">User API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/repository" title="Repository API" class="">Repository API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/activity" title="Activity API" class="">Activity API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/organization" title="Organization API" class="">Organization API</a></div> <div class="sidebar-nav-item  "><a href="/github4s/team" title="Team API" class="">Team API</a></div></div></div><div id="page-content-wrapper"><div class="nav"><div class="container-fluid"><div class="row"><div class="col-lg-12"><div class="action-menu pull-left clearfix"><a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a></div><ul class="pull-right"><li id="gh-eyes-item" class="hidden-xs"><a href="https://github.com/47deg/github4s" target="_blank" rel="noopener noreferrer"><i class="fa fa-eye"></i><span>Watchers<span id="eyes" class="label label-default">--</span></span></a></li><li id="gh-stars-item" class="hidden-xs"><a href="https://github.com/47deg/github4s" target="_blank" rel="noopener noreferrer"><i class="fa fa-star-o"></i><span>Stars<span id="stars" class="label label-default">--</span></span></a></li></ul></div></div></div></div><div id="content" data-github-owner="47deg" data-github-repo="github4s"><div class="content-wrapper"><section><h1 id="getting-started">Getting started</h1>
 
 <h2 id="api-token">API token</h2>
 
@@ -13,106 +13,131 @@ API in Github4s.</p>
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">github4s.Github</span>
 </code></pre></div></div>
 
-<p>In order for Github4s to work in both JVM and scala-js environments, you’ll need to place different
-implicits in your scope, depending on your needs:</p>
+<p>In order for Github4s to work, you’ll need an appropriate implicit <code class="highlighter-rouge">ExecutionContext</code> in Scope.</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">github4s.jvm.Implicits._</span>
-</code></pre></div></div>
+<p>Github4s is a Tagless Final API.</p>
 
-<p>Every Github4s API call returns a <code class="highlighter-rouge">GHIO[GHResponse[A]]</code> which is an alias for
-<code class="highlighter-rouge">Free[Github4s, GHResponse[A]]</code>.</p>
+<p>Every Github4s API call returns an <code class="highlighter-rouge">F[GHResponse[A]]</code> where <code class="highlighter-rouge">F</code> has an instance of <a href="https://typelevel.org/cats-effect/typeclasses/concurrent-effect.html">cats.effect.ConcurrentEffect</a></p>
 
 <p><code class="highlighter-rouge">GHResponse[A]</code> is, in turn, a type alias for <code class="highlighter-rouge">Either[GHException, GHResult[A]]</code>.</p>
 
 <p><code class="highlighter-rouge">GHResult</code> contains the result <code class="highlighter-rouge">A</code> given by Github as well as the status code and headers of the
 response:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">GHResult</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">result</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">statusCode</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">headers</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">IndexedSeq</span><span class="o">[</span><span class="kt">String</span><span class="o">]])</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">GHResult</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">result</span><span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">statusCode</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">headers</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">String</span><span class="o">])</span>
 </code></pre></div></div>
 
 <p>As an introductory example, we can get a user with the following:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">user1</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">user1</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">user1</code> in this case is a <code class="highlighter-rouge">GHIO[GHResponse[User]]</code> which we can run (<code class="highlighter-rouge">foldMap</code>) with
-<code class="highlighter-rouge">exec[M[_], C]</code> where <code class="highlighter-rouge">M[_]</code> that represents any type container that implements
-<code class="highlighter-rouge">MonadError[M, Throwable]</code> (for instance <code class="highlighter-rouge">cats.Eval</code>) and <code class="highlighter-rouge">C</code> represents a valid implementation of
-an <a href="https://github.com/47deg/github4s/blob/master/github4s/shared/src/main/scala/github4s/HttpClient.scala">HttpClient</a>.</p>
+<p><code class="highlighter-rouge">user1</code> in this case is a <code class="highlighter-rouge">IO[GHResponse[User]]</code>.</p>
 
-<p>A few examples follow with different <code class="highlighter-rouge">MonadError[M, Throwable]</code>.</p>
+<h3 id="using-catseffectio">Using <code class="highlighter-rouge">cats.effect.IO</code></h3>
 
-<h3 id="using-catseval">Using <code class="highlighter-rouge">cats.Eval</code></h3>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramIO</span> <span class="o">{</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO.contextShift</span>
+  <span class="k">import</span> <span class="nn">scala.concurrent.ExecutionContext.Implicits.global</span>
+  <span class="k">import</span> <span class="nn">github4s.Github</span>
+  
+  <span class="k">implicit</span> <span class="k">val</span> <span class="nv">IOContextShift</span> <span class="k">=</span> <span class="nv">IO</span><span class="o">.</span><span class="py">contextShift</span><span class="o">(</span><span class="n">global</span><span class="o">)</span>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">cats.Eval</span>
-<span class="k">import</span> <span class="nn">github4s.Github._</span>
-<span class="k">import</span> <span class="nn">scalaj.http.HttpResponse</span>
-
-<span class="k">object</span> <span class="nc">ProgramEval</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="nv">u1</span> <span class="k">=</span> <span class="nv">user1</span><span class="o">.</span><span class="py">exec</span><span class="o">[</span><span class="kt">Eval</span>, <span class="kt">HttpResponse</span><span class="o">[</span><span class="kt">String</span><span class="o">]]().</span><span class="py">value</span>
+  <span class="k">val</span> <span class="nv">u1</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"juanpedromoreno"</span><span class="o">)</span>
+  <span class="nv">u1</span><span class="o">.</span><span class="py">unsafeRunSync</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>As mentioned above, <code class="highlighter-rouge">u1</code> should have an <code class="highlighter-rouge">GHResult[User]</code> in the right.</p>
+<h3 id="using-monixevaltask">Using <code class="highlighter-rouge">monix.eval.Task</code></h3>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">cats.implicits._</span>
-<span class="k">import</span> <span class="nn">github4s.GithubResponses.GHResult</span>
-
-<span class="nv">ProgramEval</span><span class="o">.</span><span class="py">u1</span> <span class="k">match</span> <span class="o">{</span>
-  <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="nc">GHResult</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">status</span><span class="o">,</span> <span class="n">headers</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="nv">result</span><span class="o">.</span><span class="py">login</span>
-  <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nv">e</span><span class="o">.</span><span class="py">getMessage</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramTask</span> <span class="o">{</span>
+    <span class="k">import</span> <span class="nn">monix.execution.Scheduler.Implicits.global</span>
+    <span class="k">import</span> <span class="nn">monix.eval.Task</span>
+    <span class="k">import</span> <span class="nn">github4s.Github</span>
+    
+    <span class="k">val</span> <span class="nv">u2</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">Task</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<p>As mentioned above, <code class="highlighter-rouge">u2</code> should have an <code class="highlighter-rouge">Task[GHResponse[User]]</code></p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">github4s.GithubResponses.GHResult</span>
+
+<span class="nv">ProgramTask</span><span class="o">.</span><span class="py">u2</span><span class="o">.</span><span class="py">runAsync</span> <span class="o">{</span> <span class="n">result</span> <span class="k">=&gt;</span>
+  <span class="n">result</span> <span class="k">match</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="nc">GHResult</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">status</span><span class="nd">@_</span><span class="o">,</span> <span class="n">headers</span><span class="nd">@_</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="n">doSomething</span>
+    <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">doSomething</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Support for <code class="highlighter-rouge">cats.Id</code> and <code class="highlighter-rouge">Future</code> are provided with <code class="highlighter-rouge">GithubIOSyntax</code> which contains syntax to lift from <code class="highlighter-rouge">IO</code>.</p>
 
 <h3 id="using-catsid">Using <code class="highlighter-rouge">cats.Id</code></h3>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">cats.Id</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramId</span> <span class="o">{</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO.contextShift</span>
+  <span class="k">import</span> <span class="nn">scala.concurrent.ExecutionContext.Implicits.global</span>
+  <span class="k">import</span> <span class="nn">github4s.Github</span>
+  <span class="k">import</span> <span class="nn">github4s.GithubIOSyntax._</span>
+  
+  <span class="k">implicit</span> <span class="k">val</span> <span class="nv">IOContextShift</span> <span class="k">=</span> <span class="nv">IO</span><span class="o">.</span><span class="py">contextShift</span><span class="o">(</span><span class="n">global</span><span class="o">)</span>
 
-<span class="k">object</span> <span class="nc">ProgramId</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="nv">u2</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"raulraja"</span><span class="o">).</span><span class="py">exec</span><span class="o">[</span><span class="kt">Id</span>, <span class="kt">HttpResponse</span><span class="o">[</span><span class="kt">String</span><span class="o">]]()</span>
+  <span class="k">val</span> <span class="nv">u3</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">).</span><span class="py">toId</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <h3 id="using-future">Using <code class="highlighter-rouge">Future</code></h3>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">scala.concurrent.Future</span>
-<span class="k">import</span> <span class="nn">scala.concurrent.ExecutionContext.Implicits.global</span>
-<span class="k">import</span> <span class="nn">scala.concurrent.duration._</span>
-<span class="k">import</span> <span class="nn">scala.concurrent.Await</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramFuture</span> <span class="o">{</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO</span>
+  <span class="k">import</span> <span class="nn">cats.effect.IO.contextShift</span>
+  <span class="k">import</span> <span class="nn">scala.concurrent.ExecutionContext.Implicits.global</span>
+  <span class="k">import</span> <span class="nn">scala.concurrent.duration._</span>
+  <span class="k">import</span> <span class="nn">scala.concurrent.Await</span>
+  <span class="k">import</span> <span class="nn">github4s.Github</span>
+  <span class="k">import</span> <span class="nn">github4s.GithubIOSyntax._</span>
 
-<span class="k">object</span> <span class="nc">ProgramFuture</span> <span class="o">{</span>
-  <span class="c1">// execFuture[C] is a shortcut for exec[Future, C]
-</span>  <span class="k">val</span> <span class="nv">u3</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"dialelo"</span><span class="o">).</span><span class="py">execFuture</span><span class="o">[</span><span class="kt">HttpResponse</span><span class="o">[</span><span class="kt">String</span><span class="o">]]()</span>
-  <span class="nv">Await</span><span class="o">.</span><span class="py">result</span><span class="o">(</span><span class="n">u3</span><span class="o">,</span> <span class="mf">2.</span><span class="n">seconds</span><span class="o">)</span>
+  <span class="k">implicit</span> <span class="k">val</span> <span class="nv">IOContextShift</span> <span class="k">=</span> <span class="nv">IO</span><span class="o">.</span><span class="py">contextShift</span><span class="o">(</span><span class="n">global</span><span class="o">)</span>
+
+  <span class="k">val</span> <span class="nv">u4</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"dialelo"</span><span class="o">).</span><span class="py">toFuture</span>
+  <span class="nv">Await</span><span class="o">.</span><span class="py">result</span><span class="o">(</span><span class="n">u4</span><span class="o">,</span> <span class="mf">2.</span><span class="n">seconds</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></div>
-
-<h3 id="using-catseffectasync-sync">Using <code class="highlighter-rouge">cats.effect.{Async, Sync}</code></h3>
-
-<p>On the JVM, you can use any <code class="highlighter-rouge">cats.effect.Sync</code>, here we’re using <code class="highlighter-rouge">cats.effect.IO</code>:</p>
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">cats.effect.IO</span>
-<span class="k">import</span> <span class="nn">github4s.cats.effect.jvm.Implicits._</span>
-
-<span class="k">object</span> <span class="nc">ProgramTask</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="nv">u5</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"juanpedromoreno"</span><span class="o">).</span><span class="py">exec</span><span class="o">[</span><span class="kt">IO</span>, <span class="kt">HttpResponse</span><span class="o">[</span><span class="kt">String</span><span class="o">]]()</span>
-  <span class="nv">u5</span><span class="o">.</span><span class="py">unsafeRunSync</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Note that you’ll need a dependency to the <code class="highlighter-rouge">github4s-cats-effect</code> package to leverage
-cats-effect integration.</p>
 
 <h2 id="specifying-custom-headers">Specifying custom headers</h2>
 
-<p>The different <code class="highlighter-rouge">exec</code> methods let users include custom headers for any Github API request:</p>
+<p>Headers are an optional field for any Github API request:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramEval</span> <span class="o">{</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramEvalWithHeaders</span> <span class="o">{</span>
+  <span class="k">import</span> <span class="nn">monix.execution.Scheduler.Implicits.global</span>
+  <span class="k">import</span> <span class="nn">monix.eval.Task</span>
+  <span class="k">import</span> <span class="nn">github4s.Github</span>
+    
   <span class="k">val</span> <span class="nv">userHeaders</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">"user-agent"</span> <span class="o">-&gt;</span> <span class="s">"github4s"</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">user1</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">).</span><span class="py">exec</span><span class="o">[</span><span class="kt">Eval</span>, <span class="kt">HttpResponse</span><span class="o">[</span><span class="kt">String</span><span class="o">]](</span><span class="n">userHeaders</span><span class="o">).</span><span class="py">value</span>
+  <span class="k">val</span> <span class="nv">u5</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">Task</span><span class="o">](</span><span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">,</span> <span class="n">userHeaders</span><span class="o">)</span>  
 <span class="o">}</span>
 </code></pre></div></div>
 
-</section></div></div></div></div><script src="/github4s/highlight/highlight.pack.js"></script><script>hljs.configure({languages:['scala','java','bash']});
+</section></div></div></div></div><script src="/github4s/highlight/highlight.pack.js"></script><script>
+// For all code blocks, copy the language from the containing div
+// to the inner code tag (where hljs expects it to be)
+const langPrefix = 'language-';
+document.querySelectorAll(`div[class^='${langPrefix}']`).forEach(function(div) {
+  div.classList.forEach(function(cssClass) {
+    if (cssClass.startsWith(langPrefix)) {
+      const lang = cssClass.substring(langPrefix.length);
+      div.querySelectorAll('pre code').forEach(function(code) {
+        code.classList.add(lang);
+      });
+    }
+  });
+});
+
+hljs.configure({languages:['scala','java','bash']});
 hljs.initHighlightingOnLoad();
-              </script><script>console.info('\x57\x65\x62\x73\x69\x74\x65\x20\x62\x75\x69\x6c\x74\x20\x77\x69\x74\x68\x3a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x5f\x20\x20\x20\x20\x5f\x5f\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x20\x5f\x5f\x0a\x20\x20\x20\x5f\x5f\x5f\x5f\x5f\x2f\x20\x2f\x5f\x20\x20\x2f\x20\x2f\x5f\x20\x20\x20\x20\x20\x20\x5f\x5f\x5f\x5f\x20\x5f\x5f\x5f\x20\x20\x28\x5f\x29\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x20\x20\x5f\x5f\x5f\x5f\x5f\x28\x5f\x29\x20\x2f\x5f\x5f\x5f\x5f\x20\x20\x5f\x5f\x5f\x5f\x5f\x0a\x20\x20\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x5c\x2f\x20\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x60\x5f\x5f\x20\x5c\x2f\x20\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x5c\x2f\x20\x5f\x5f\x5f\x2f\x20\x2f\x20\x5f\x5f\x2f\x20\x5f\x20\x5c\x2f\x20\x5f\x5f\x5f\x2f\x0a\x20\x28\x5f\x5f\x20\x20\x29\x20\x2f\x5f\x2f\x20\x2f\x20\x2f\x5f\x2f\x5f\x5f\x5f\x5f\x5f\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x5f\x5f\x2f\x20\x2f\x20\x20\x2f\x20\x2f\x5f\x2f\x20\x28\x5f\x5f\x20\x20\x29\x20\x2f\x20\x2f\x5f\x2f\x20\x20\x5f\x5f\x28\x5f\x5f\x20\x20\x29\x0a\x2f\x5f\x5f\x5f\x5f\x2f\x5f\x2e\x5f\x5f\x5f\x2f\x5c\x5f\x5f\x2f\x20\x20\x20\x20\x20\x2f\x5f\x2f\x20\x2f\x5f\x2f\x20\x2f\x5f\x2f\x5f\x2f\x5c\x5f\x5f\x5f\x2f\x5f\x2f\x20\x20\x20\x5c\x5f\x5f\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x2f\x5f\x2f\x5c\x5f\x5f\x2f\x5c\x5f\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x2f\x0a\x0a\x68\x74\x74\x70\x73\x3a\x2f\x2f\x34\x37\x64\x65\x67\x2e\x67\x69\x74\x68\x75\x62\x2e\x69\x6f\x2f\x73\x62\x74\x2d\x6d\x69\x63\x72\x6f\x73\x69\x74\x65\x73')</script><script>((window.gitter = {}).chat = {}).options = {
+      </script><script>console.info('\x57\x65\x62\x73\x69\x74\x65\x20\x62\x75\x69\x6c\x74\x20\x77\x69\x74\x68\x3a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x5f\x20\x20\x20\x20\x5f\x5f\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x5f\x20\x5f\x5f\x0a\x20\x20\x20\x5f\x5f\x5f\x5f\x5f\x2f\x20\x2f\x5f\x20\x20\x2f\x20\x2f\x5f\x20\x20\x20\x20\x20\x20\x5f\x5f\x5f\x5f\x20\x5f\x5f\x5f\x20\x20\x28\x5f\x29\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x5f\x20\x20\x5f\x5f\x5f\x5f\x5f\x28\x5f\x29\x20\x2f\x5f\x5f\x5f\x5f\x20\x20\x5f\x5f\x5f\x5f\x5f\x0a\x20\x20\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x5c\x2f\x20\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x60\x5f\x5f\x20\x5c\x2f\x20\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x5f\x2f\x20\x5f\x5f\x20\x5c\x2f\x20\x5f\x5f\x5f\x2f\x20\x2f\x20\x5f\x5f\x2f\x20\x5f\x20\x5c\x2f\x20\x5f\x5f\x5f\x2f\x0a\x20\x28\x5f\x5f\x20\x20\x29\x20\x2f\x5f\x2f\x20\x2f\x20\x2f\x5f\x2f\x5f\x5f\x5f\x5f\x5f\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x20\x2f\x5f\x5f\x2f\x20\x2f\x20\x20\x2f\x20\x2f\x5f\x2f\x20\x28\x5f\x5f\x20\x20\x29\x20\x2f\x20\x2f\x5f\x2f\x20\x20\x5f\x5f\x28\x5f\x5f\x20\x20\x29\x0a\x2f\x5f\x5f\x5f\x5f\x2f\x5f\x2e\x5f\x5f\x5f\x2f\x5c\x5f\x5f\x2f\x20\x20\x20\x20\x20\x2f\x5f\x2f\x20\x2f\x5f\x2f\x20\x2f\x5f\x2f\x5f\x2f\x5c\x5f\x5f\x5f\x2f\x5f\x2f\x20\x20\x20\x5c\x5f\x5f\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x2f\x5f\x2f\x5c\x5f\x5f\x2f\x5c\x5f\x5f\x5f\x2f\x5f\x5f\x5f\x5f\x2f\x0a\x0a\x68\x74\x74\x70\x73\x3a\x2f\x2f\x34\x37\x64\x65\x67\x2e\x67\x69\x74\x68\x75\x62\x2e\x69\x6f\x2f\x73\x62\x74\x2d\x6d\x69\x63\x72\x6f\x73\x69\x74\x65\x73')</script><script>((window.gitter = {}).chat = {}).options = {
 room: '47deg/github4s'};</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js"></script><script src="/github4s/js/docs.js"></script></body></html>
