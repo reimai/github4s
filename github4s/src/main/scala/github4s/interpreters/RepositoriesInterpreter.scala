@@ -16,7 +16,9 @@
 
 package github4s.interpreters
 
+import cats.Functor
 import cats.data.NonEmptyList
+import cats.syntax.functor._
 import com.github.marklister.base64.Base64._
 import github4s.Decoders._
 import github4s.Encoders._
@@ -25,8 +27,10 @@ import github4s.algebras.Repositories
 import github4s.domain._
 import github4s.http.HttpClient
 
-class RepositoriesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
-    extends Repositories[F] {
+class RepositoriesInterpreter[F[_]: Functor](implicit
+    client: HttpClient[F],
+    accessToken: Option[String]
+) extends Repositories[F] {
   override def get(
       owner: String,
       repo: String,
@@ -217,6 +221,20 @@ class RepositoriesInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       pagination
     )
 
+  override def userIsCollaborator(
+      owner: String,
+      repo: String,
+      username: String,
+      headers: Map[String, String]
+  ): F[GHResponse[Boolean]] =
+    client
+      .getWithoutResponse(
+        accessToken,
+        s"repos/$owner/$repo/collaborators/$username",
+        headers
+      )
+      .map(handleIsCollaboratorResponse)
+
   override def getRepoPermissionForUser(
       owner: String,
       repo: String,
@@ -323,4 +341,13 @@ class RepositoriesInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       headers,
       NewStatusRequest(state, target_url, description, context)
     )
+
+  private def handleIsCollaboratorResponse(response: GHResponse[Unit]): GHResponse[Boolean] =
+    response.result match {
+      case Right(_) => response.copy(result = Right(true))
+      case Left(_) if response.statusCode == 404 =>
+        response.copy(result = Right(false))
+      case Left(error) => GHResponse(Left(error), response.statusCode, response.headers)
+    }
+
 }

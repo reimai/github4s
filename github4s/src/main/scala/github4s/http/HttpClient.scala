@@ -17,19 +17,19 @@
 package github4s.http
 
 import cats.data.EitherT
-import cats.effect.Sync
+import cats.effect.{Resource, Sync}
 import cats.instances.string._
 import cats.syntax.either._
 import cats.syntax.functor._
-import github4s._
 import github4s.GHError._
+import github4s._
 import github4s.domain.Pagination
 import github4s.http.Http4sSyntax._
 import io.circe.{Decoder, Encoder}
-import org.http4s.{EntityDecoder, Request, Response, Status}
-import org.http4s.client.Client
 import org.http4s.circe.CirceEntityDecoder._
 import org.http4s.circe.jsonOf
+import org.http4s.client.Client
+import org.http4s.{EntityDecoder, Request, Response, Status}
 
 class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
   import HttpClient._
@@ -50,6 +50,15 @@ class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
             Map("page" -> p.page.toString, "per_page" -> p.per_page.toString)
           )
         )
+    )
+
+  def getWithoutResponse(
+      accessToken: Option[String] = None,
+      url: String,
+      headers: Map[String, String] = Map.empty
+  ): F[GHResponse[Unit]] =
+    runWithoutResponse[Unit](
+      RequestBuilder(buildURL(url)).withHeaders(headers).withAuth(accessToken)
     )
 
   def patch[Req: Encoder, Res: Decoder](
@@ -145,6 +154,21 @@ class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
   private def buildURL(method: String): String = s"${config.baseUrl}$method"
 
   private def run[Req: Encoder, Res: Decoder](request: RequestBuilder[Req]): F[GHResponse[Res]] =
+    runRequest(request)
+      .use { response =>
+        buildResponse(response).map(GHResponse(_, response.status.code, response.headers.toMap))
+      }
+
+  private def runWithoutResponse[Req: Encoder](request: RequestBuilder[Req]): F[GHResponse[Unit]] =
+    runRequest(
+      request
+    ).use { response =>
+      buildResponseFromEmpty(response).map(
+        GHResponse(_, response.status.code, response.headers.toMap)
+      )
+    }
+
+  private def runRequest[Req: Encoder](request: RequestBuilder[Req]): Resource[F, Response[F]] =
     client
       .run(
         Request[F]()
@@ -153,9 +177,6 @@ class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
           .withHeaders((config.toHeaderList ++ request.toHeaderList): _*)
           .withJsonBody(request.data)
       )
-      .use { response =>
-        buildResponse(response).map(GHResponse(_, response.status.code, response.headers.toMap))
-      }
 }
 
 object HttpClient {
@@ -186,6 +207,14 @@ object HttpClient {
       e => (JsonParsingError(e): GHError).asLeft,
       _.leftMap[GHError](identity)
     )
+
+  private[github4s] def buildResponseFromEmpty[F[_]: Sync](
+      response: Response[F]
+  ): F[Either[GHError, Unit]] =
+    response.status.code match {
+      case i if Status(i).isSuccess => Sync[F].pure(().asRight)
+      case _                        => buildResponse[F, Unit](response)
+    }
 
   private def responseBody[F[_]: Sync](response: Response[F]): F[String] =
     response.bodyText.compile.foldMonoid

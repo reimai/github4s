@@ -19,7 +19,7 @@ package github4s.integration
 import cats.data.NonEmptyList
 import cats.effect.{IO, Resource}
 import cats.implicits._
-import github4s.GHError.NotFoundError
+import github4s.GHError.{NotFoundError, UnauthorizedError}
 import github4s.domain._
 import github4s.utils.{BaseIntegrationSpec, Integration}
 import github4s.{GHResponse, Github}
@@ -311,6 +311,57 @@ trait ReposSpec extends BaseIntegrationSpec {
 
     testIsLeft[NotFoundError, List[User]](response)
     response.statusCode shouldBe notFoundStatusCode
+  }
+
+  "Repos >> UserIsCollaborator" should "return true when the user is a collaborator" taggedAs Integration in {
+    val response = clientResource
+      .use { client =>
+        Github[IO](client, accessToken).repos
+          .userIsCollaborator(
+            validRepoOwner,
+            validRepoName,
+            validUsername,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsRight[Boolean](response, r => r should be(true))
+    response.statusCode shouldBe noContentStatusCode
+  }
+
+  it should "return false when the user is not a collaborator" taggedAs Integration in {
+    val response = clientResource
+      .use { client =>
+        Github[IO](client, accessToken).repos
+          .userIsCollaborator(
+            validRepoOwner,
+            validRepoName,
+            invalidUsername,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsRight[Boolean](response, r => r should be(false))
+    response.statusCode shouldBe notFoundStatusCode
+  }
+
+  it should "return error when other errors occur" taggedAs Integration in {
+    val response = clientResource
+      .use { client =>
+        Github[IO](client, "invalid-access-token".some).repos
+          .userIsCollaborator(
+            validRepoOwner,
+            validRepoName,
+            validUsername,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsLeft[UnauthorizedError, Boolean](response)
+    response.statusCode shouldBe unauthorizedStatusCode
   }
 
   "Repos >> GetRepoPermissionForUser" should "return user repo permission" taggedAs Integration in {

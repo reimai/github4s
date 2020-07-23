@@ -272,6 +272,27 @@ trait Repositories[F[_]] {
   ): F[GHResponse[List[User]]]
 
   /**
+   * Get whether a user is a repository collaborator
+   *
+   * For organization-owned repositories, the list of collaborators includes outside collaborators,
+   * organization members that are direct collaborators, organization members with access through team memberships,
+   * organization members with access through default organization permissions, and organization owners.
+   *
+   *
+   * @param owner of the repo
+   * @param repo name of the repo
+   * @param username Github username
+   * @param headers optional user headers to include in the request
+   * @return a Boolean GHResponse
+   */
+  def userIsCollaborator(
+      owner: String,
+      repo: String,
+      username: String,
+      headers: Map[String, String] = Map()
+  ): F[GHResponse[Boolean]]
+
+  /**
    * Get the repository permission of a collaborator
    *
    * @param owner of the repo
