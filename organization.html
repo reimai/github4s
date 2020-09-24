@@ -41,16 +41,16 @@ with Github4s, you can interact with:</p>
 
 <h3 id="list-members">List members</h3>
 
-<p>You can list the members for a particular organization with <code class="language-plaintext highlighter-rouge">listMembers</code>; it takes as arguments:</p>
+<p>You can list the members for a particular organization with <code class="highlighter-rouge">listMembers</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">org</code>: name of the organization for which we want to retrieve the members.</li>
-  <li><code class="language-plaintext highlighter-rouge">filter</code>: to retrieve “all” or only “2fa_disabled” users, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">role</code>: to retrieve “all”, only non-owners (“member”) or only owners (“admin”), optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">org</code>: name of the organization for which we want to retrieve the members.</li>
+  <li><code class="highlighter-rouge">filter</code>: to retrieve “all” or only “2fa_disabled” users, optional.</li>
+  <li><code class="highlighter-rouge">role</code>: to retrieve “all”, only non-owners (“member”) or only owners (“admin”), optional.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
-<p>To list the members for organization <code class="language-plaintext highlighter-rouge">47deg</code>:</p>
+<p>To list the members for organization <code class="highlighter-rouge">47deg</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listMembers</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">organizations</span><span class="o">.</span><span class="py">listMembers</span><span class="o">(</span><span class="s">"47deg"</span><span class="o">)</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">listMembers</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -60,7 +60,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/orgs/members/#members-list">the API doc</a> for full reference.</p>
 
@@ -68,15 +68,15 @@ with Github4s, you can interact with:</p>
 
 <h3 id="list-outside-collaborators">List outside collaborators</h3>
 
-<p>You can list the outside collaborators of your organization with <code class="language-plaintext highlighter-rouge">listOutsideCollaborators</code>; it takes as arguments:</p>
+<p>You can list the outside collaborators of your organization with <code class="highlighter-rouge">listOutsideCollaborators</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">org</code>: name of the organization for which we want to retrieve the outside collaborators.</li>
-  <li><code class="language-plaintext highlighter-rouge">filter</code>: to retrieve “all” or only “2fa_disabled” users, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">org</code>: name of the organization for which we want to retrieve the outside collaborators.</li>
+  <li><code class="highlighter-rouge">filter</code>: to retrieve “all” or only “2fa_disabled” users, optional.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
-<p>To list the outside collaborators for organization <code class="language-plaintext highlighter-rouge">47deg</code>:</p>
+<p>To list the outside collaborators for organization <code class="highlighter-rouge">47deg</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">outsideCollaborators</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">organizations</span><span class="o">.</span><span class="py">listOutsideCollaborators</span><span class="o">(</span><span class="s">"47deg"</span><span class="o">)</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">outsideCollaborators</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -86,7 +86,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/orgs/outside_collaborators/#list-outside-collaborators">the API doc</a> for full reference.</p>
 

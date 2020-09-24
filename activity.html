@@ -46,12 +46,12 @@ with Github4s, you can interact with:</p>
 
 <p>Unsubscribing from a conversation mutes all future notifications (until you comment or get @mentioned once more).</p>
 
-<p>You can subscribe or unsubscribe using <code class="language-plaintext highlighter-rouge">setThreadSub</code>; it takes as arguments:</p>
+<p>You can subscribe or unsubscribe using <code class="highlighter-rouge">setThreadSub</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">id</code>: Thread id from which you subscribe or unsubscribe.</li>
-  <li><code class="language-plaintext highlighter-rouge">subscribed</code>: Determines if notifications should be received from this thread.</li>
-  <li><code class="language-plaintext highlighter-rouge">ignored</code>: Determines if all notifications should be blocked from this thread.</li>
+  <li><code class="highlighter-rouge">id</code>: Thread id from which you subscribe or unsubscribe.</li>
+  <li><code class="highlighter-rouge">subscribed</code>: Determines if notifications should be received from this thread.</li>
+  <li><code class="highlighter-rouge">ignored</code>: Determines if all notifications should be blocked from this thread.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">threadSub</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">activities</span><span class="o">.</span><span class="py">setThreadSub</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
@@ -62,7 +62,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the created or deleted <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">Subscription</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the created or deleted <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">Subscription</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/activity/notifications/#set-a-thread-subscription">the API doc</a> for full reference.</p>
 
@@ -70,12 +70,12 @@ with Github4s, you can interact with:</p>
 
 <h3 id="list-stargazers">List stargazers</h3>
 
-<p>You can list the users starring a specific repository with <code class="language-plaintext highlighter-rouge">listStargazers</code>; it takes as arguments:</p>
+<p>You can list the users starring a specific repository with <code class="highlighter-rouge">listStargazers</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">timeline</code>: whether or not to return the date at which point the user starred the repository.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">timeline</code>: whether or not to return the date at which point the user starred the repository.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To list the stargazers of 47degrees/github4s:</p>
@@ -88,26 +88,26 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">List[Stargazer]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">List[Stargazer]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/activity/starring/#list-stargazers">the API doc</a> for full
 reference.</p>
 
 <h3 id="list-starred-repositories">List starred repositories</h3>
 
-<p>You can list the repositories starred by a particular user with <code class="language-plaintext highlighter-rouge">listStarredRepositories</code>; it takes
+<p>You can list the repositories starred by a particular user with <code class="highlighter-rouge">listStarredRepositories</code>; it takes
 as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">username</code>: name of the user for which we want to retrieve the starred repositories.</li>
-  <li><code class="language-plaintext highlighter-rouge">timeline</code>: whether or not to return the date at which point the user starred the repository.</li>
-  <li><code class="language-plaintext highlighter-rouge">sort</code>: how to sort the result, can be “created” (when the repo was starred) or “updated” (when
+  <li><code class="highlighter-rouge">username</code>: name of the user for which we want to retrieve the starred repositories.</li>
+  <li><code class="highlighter-rouge">timeline</code>: whether or not to return the date at which point the user starred the repository.</li>
+  <li><code class="highlighter-rouge">sort</code>: how to sort the result, can be “created” (when the repo was starred) or “updated” (when
 the repo was last pushed to), optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">direction</code>: “asc” or “desc”, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">direction</code>: “asc” or “desc”, optional.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
-<p>To list the starred repositories for user <code class="language-plaintext highlighter-rouge">rafaparadela</code>:</p>
+<p>To list the starred repositories for user <code class="highlighter-rouge">rafaparadela</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listStarredRepositories</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">activities</span><span class="o">.</span><span class="py">listStarredRepositories</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">listStarredRepositories</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -117,7 +117,7 @@ the repo was last pushed to), optional.</li>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">List[StarredRepository]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Activity.scala">List[StarredRepository]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/activity/starring/#list-repositories-being-starred">the API doc</a>
 for full reference.</p>

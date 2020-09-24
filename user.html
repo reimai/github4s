@@ -39,10 +39,10 @@ with Github4s, you can interacts with:</p>
 
 <p>Get information for a particular user.</p>
 
-<p>You can get a user using <code class="language-plaintext highlighter-rouge">get</code>, it takes as argument:</p>
+<p>You can get a user using <code class="highlighter-rouge">get</code>, it takes as argument:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">username</code>: of the user to retrieve.</li>
+  <li><code class="highlighter-rouge">username</code>: of the user to retrieve.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">getUser</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
@@ -53,7 +53,7 @@ with Github4s, you can interacts with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">User</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">User</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/users/#get-a-single-user">the API doc</a> for full reference.</p>
 
@@ -61,7 +61,7 @@ with Github4s, you can interacts with:</p>
 
 <p>Get information of the authenticated user making the API call.</p>
 
-<p>You can get an authenticated user using <code class="language-plaintext highlighter-rouge">getAuth</code>:</p>
+<p>You can get an authenticated user using <code class="highlighter-rouge">getAuth</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">getAuth</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">users</span><span class="o">.</span><span class="py">getAuth</span><span class="o">()</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">getAuth</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -71,17 +71,17 @@ with Github4s, you can interacts with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">User</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">User</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/users/#get-the-authenticated-user">the API doc</a> for full reference.</p>
 
 <h3 id="get-a-list-of-users">Get a list of users</h3>
 
-<p>You can get a list of users using <code class="language-plaintext highlighter-rouge">getUsers</code>, it takes as arguments:</p>
+<p>You can get a list of users using <code class="highlighter-rouge">getUsers</code>, it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">since</code>: The integer ID of the last User that you’ve seen.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
+  <li><code class="highlighter-rouge">since</code>: The integer ID of the last User that you’ve seen.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">getUsers</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">users</span><span class="o">.</span><span class="py">getUsers</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
@@ -92,7 +92,7 @@ with Github4s, you can interacts with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/users/#get-all-users">the API doc</a> for full reference.</p>
 
@@ -102,11 +102,11 @@ with Github4s, you can interacts with:</p>
 
 <h3 id="list-users-followed-by-another-user">List users followed by another user</h3>
 
-<p>You can get a list of users followed by another user using <code class="language-plaintext highlighter-rouge">getFollowing</code>, it takes as argument:</p>
+<p>You can get a list of users followed by another user using <code class="highlighter-rouge">getFollowing</code>, it takes as argument:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">username</code>: of the user to retrieve.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">username</code>: of the user to retrieve.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">getFollowing</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">users</span><span class="o">.</span><span class="py">getFollowing</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
@@ -117,7 +117,7 @@ with Github4s, you can interacts with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/users/followers/#list-users-followed-by-another-use">the API doc</a> for full reference.</p>
 

@@ -11,6 +11,7 @@ with Github4s, you can interact with:</p>
       <li><a href="#list-user-repositories">List user repositories</a></li>
       <li><a href="#list-contributors">List contributors</a></li>
       <li><a href="#list-collaborators">List collaborators</a></li>
+      <li><a href="#check-if-a-user-is-a-repository-collaborator">Check user is a repository collaborator</a></li>
       <li><a href="#get-repository-permissions-for-a-user">Get repository permissions for a user</a></li>
     </ul>
   </li>
@@ -69,10 +70,10 @@ with Github4s, you can interact with:</p>
 
 <h3 id="get-a-repository">Get a repository</h3>
 
-<p>You can get a repository using <code class="language-plaintext highlighter-rouge">get</code>; it takes as arguments:</p>
+<p>You can get a repository using <code class="highlighter-rouge">get</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
 </ul>
 
 <p>To get a repository:</p>
@@ -85,21 +86,21 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the get <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Repository</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the get <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Repository</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/#get">the API doc</a> for full
 reference.</p>
 
 <h3 id="list-organization-repositories">List organization repositories</h3>
 
-<p>You can retrieve the list of repositories for a particular organization using <code class="language-plaintext highlighter-rouge">listOrgRepos</code>; it
+<p>You can retrieve the list of repositories for a particular organization using <code class="highlighter-rouge">listOrgRepos</code>; it
 takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">org</code>: The organization name.</li>
-  <li><code class="language-plaintext highlighter-rouge">type</code>: The optional type of the returned repositories, can be “all”, “public”, “private”,
+  <li><code class="highlighter-rouge">org</code>: The organization name.</li>
+  <li><code class="highlighter-rouge">type</code>: The optional type of the returned repositories, can be “all”, “public”, “private”,
 “forks”, “sources” or “member”, defaults to “all”.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
 </ul>
 
 <p>To list the repositories for an organization:</p>
@@ -112,20 +113,20 @@ takes as arguments:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Repository]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Repository]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/#list-organization-repositories">the API doc</a> for full
 reference.</p>
 
 <h3 id="list-user-repositories">List user repositories</h3>
 
-<p>You can retrieve the list of repositories for a particular user using <code class="language-plaintext highlighter-rouge">listUserRepos</code>; it
+<p>You can retrieve the list of repositories for a particular user using <code class="highlighter-rouge">listUserRepos</code>; it
 takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">user</code>: The user name.</li>
-  <li><code class="language-plaintext highlighter-rouge">type</code>: The optional type of the returned repositories, can be “all”, “owner” or “member”, defaults to “owner”.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
+  <li><code class="highlighter-rouge">user</code>: The user name.</li>
+  <li><code class="highlighter-rouge">type</code>: The optional type of the returned repositories, can be “all”, “owner” or “member”, defaults to “owner”.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
 </ul>
 
 <p>To list the repositories for a user:</p>
@@ -138,7 +139,7 @@ takes as arguments:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Repository]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Repository]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/#list-repositories-for-a-user">the API doc</a> for full
 reference.</p>
@@ -148,12 +149,12 @@ reference.</p>
 <p>List contributors to the specified repository,
 sorted by the number of commits per contributor in descending order.</p>
 
-<p>You can list contributors using <code class="language-plaintext highlighter-rouge">listContributors</code>, it takes as arguments:</p>
+<p>You can list contributors using <code class="highlighter-rouge">listContributors</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">anon</code> Set to 1 or true to include anonymous contributors in results.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">anon</code> Set to 1 or true to include anonymous contributors in results.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To list contributors:</p>
@@ -166,7 +167,7 @@ sorted by the number of commits per contributor in descending order.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/#list-contributors">the API doc</a> for full
 reference.</p>
@@ -175,13 +176,13 @@ reference.</p>
 
 <p>List collaborators in the specified repository.</p>
 
-<p>You can list collaborators using <code class="language-plaintext highlighter-rouge">listCollaborators</code>, it takes as arguments:</p>
+<p>You can list collaborators using <code class="highlighter-rouge">listCollaborators</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">affiliation</code>, one of <code class="language-plaintext highlighter-rouge">outside</code>, <code class="language-plaintext highlighter-rouge">direct</code>, or <code class="language-plaintext highlighter-rouge">all</code> (default <code class="language-plaintext highlighter-rouge">all</code>).
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">affiliation</code>, one of <code class="highlighter-rouge">outside</code>, <code class="highlighter-rouge">direct</code>, or <code class="highlighter-rouge">all</code> (default <code class="highlighter-rouge">all</code>).
 For more information take a look at <a href="https://developer.github.com/v3/repos/collaborators/#parameters">the API doc</a>.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listCollaborators</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">repos</span><span class="o">.</span><span class="py">listCollaborators</span><span class="o">(</span><span class="s">"47degrees"</span><span class="o">,</span> <span class="s">"github4s"</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">"all"</span><span class="o">))</span>
@@ -192,16 +193,33 @@ For more information take a look at <a href="https://developer.github.com/v3/rep
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/User.scala">List[User]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/collaborators/#list-collaborators">the API doc</a> for full
 reference.</p>
+
+<h3 id="check-if-a-user-is-a-repository-collaborator">Check if a user is a repository collaborator</h3>
+
+<p>Returns whether a given user is a repository collaborator or not.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">userIsCollaborator</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">repos</span><span class="o">.</span><span class="py">userIsCollaborator</span><span class="o">(</span><span class="s">"47degrees"</span><span class="o">,</span> <span class="s">"github4s"</span><span class="o">,</span> <span class="s">"rafaparadela"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">userIsCollaborator</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
+<span class="nv">response</span><span class="o">.</span><span class="py">result</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">Left</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"Something went wrong: ${e.getMessage}"</span><span class="o">)</span>
+  <span class="k">case</span> <span class="nc">Right</span><span class="o">(</span><span class="n">r</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nf">println</span><span class="o">(</span><span class="n">r</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">result</code> on the right is <code class="highlighter-rouge">Boolean</code></p>
+
+<p>See <a href="https://developer.github.com/v3/repos/collaborators/#check-if-a-user-is-a-repository-collaborator">the API doc</a> 
+for full reference.</p>
 
 <h3 id="get-repository-permissions-for-a-user">Get repository permissions for a user</h3>
 
 <p>Checks the repository permission of a collaborator.</p>
 
-<p>The possible repository permissions are <code class="language-plaintext highlighter-rouge">admin</code>, <code class="language-plaintext highlighter-rouge">write</code>, <code class="language-plaintext highlighter-rouge">read</code>, and <code class="language-plaintext highlighter-rouge">none</code>.</p>
+<p>The possible repository permissions are <code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">write</code>, <code class="highlighter-rouge">read</code>, and <code class="highlighter-rouge">none</code>.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">userRepoPermission</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">repos</span><span class="o">.</span><span class="py">getRepoPermissionForUser</span><span class="o">(</span><span class="s">"47degrees"</span><span class="o">,</span> <span class="s">"github4s"</span><span class="o">,</span> <span class="s">"rafaparadela"</span><span class="o">)</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">userRepoPermission</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -211,7 +229,7 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">UserRepoPermission</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">UserRepoPermission</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/collaborators/#get-repository-permissions-for-a-user">the API doc</a> for full
 reference.</p>
@@ -220,16 +238,16 @@ reference.</p>
 
 <h3 id="list-commits-on-a-repository">List commits on a repository</h3>
 
-<p>You can list commits using <code class="language-plaintext highlighter-rouge">listCommits</code>, it takes as arguments:</p>
+<p>You can list commits using <code class="highlighter-rouge">listCommits</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">SHA</code> or branch to start listing commits from. Default: the repository’s default branch (usually <code class="language-plaintext highlighter-rouge">master</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: Only commits containing this file path will be returned.</li>
-  <li><code class="language-plaintext highlighter-rouge">author</code>: GitHub login or email address by which to filter by commit author.</li>
-  <li><code class="language-plaintext highlighter-rouge">since</code>: Only commits after this date will be returned. Format: “YYYY-MM-DDTHH:MM:SSZ”.</li>
-  <li><code class="language-plaintext highlighter-rouge">until</code>: Only commits before this date will be returned. Format: “YYYY-MM-DDTHH:MM:SSZ”.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">SHA</code> or branch to start listing commits from. Default: the repository’s default branch (usually <code class="highlighter-rouge">master</code>).</li>
+  <li><code class="highlighter-rouge">path</code>: Only commits containing this file path will be returned.</li>
+  <li><code class="highlighter-rouge">author</code>: GitHub login or email address by which to filter by commit author.</li>
+  <li><code class="highlighter-rouge">since</code>: Only commits after this date will be returned. Format: “YYYY-MM-DDTHH:MM:SSZ”.</li>
+  <li><code class="highlighter-rouge">until</code>: Only commits before this date will be returned. Format: “YYYY-MM-DDTHH:MM:SSZ”.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination.</li>
 </ul>
 
 <p>To list commits:</p>
@@ -250,7 +268,7 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Commit]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Commit]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/commits/#list-commits-on-a-repository">the API doc</a> for full
 reference.</p>
@@ -259,12 +277,12 @@ reference.</p>
 
 <h3 id="list-branches-on-a-repository">List branches on a repository</h3>
 
-<p>You can list branches using <code class="language-plaintext highlighter-rouge">listBranches</code>, it takes as arguments:</p>
+<p>You can list branches using <code class="highlighter-rouge">listBranches</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">protected</code> Only protected branches.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">protected</code> Only protected branches.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To list branches:</p>
@@ -280,7 +298,7 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Branch]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Branch]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/branches/#list-branches">the API doc</a> for full reference.</p>
 
@@ -290,13 +308,13 @@ reference.</p>
 
 <p>This method returns the contents of a file or directory in a repository.</p>
 
-<p>You can get contents using <code class="language-plaintext highlighter-rouge">getContents</code>, it takes as arguments:</p>
+<p>You can get contents using <code class="highlighter-rouge">getContents</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: The content path.</li>
-  <li><code class="language-plaintext highlighter-rouge">ref</code>: The name of the <code class="language-plaintext highlighter-rouge">commit/branch/tag</code>. Default: the repository’s default branch (usually <code class="language-plaintext highlighter-rouge">master</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">path</code>: The content path.</li>
+  <li><code class="highlighter-rouge">ref</code>: The name of the <code class="highlighter-rouge">commit/branch/tag</code>. Default: the repository’s default branch (usually <code class="highlighter-rouge">master</code>).</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To get contents:</p>
@@ -309,7 +327,7 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">NonEmptyList[Content]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">NonEmptyList[Content]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/contents/#get-contents">the API doc</a> for full
 reference.</p>
@@ -318,16 +336,16 @@ reference.</p>
 
 <p>This method creates a new file in an existing repository.</p>
 
-<p>You can create a new file using <code class="language-plaintext highlighter-rouge">createFile</code>, it takes as arguments:</p>
+<p>You can create a new file using <code class="highlighter-rouge">createFile</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
-  <li><code class="language-plaintext highlighter-rouge">message</code>: The message to use for creating the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">content</code>: The content of the new file, as an array of bytes.</li>
-  <li><code class="language-plaintext highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
-  <li><code class="language-plaintext highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
+  <li><code class="highlighter-rouge">message</code>: The message to use for creating the commit.</li>
+  <li><code class="highlighter-rouge">content</code>: The content of the new file, as an array of bytes.</li>
+  <li><code class="highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
+  <li><code class="highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
+  <li><code class="highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
 </ul>
 
 <p>To create a file:</p>
@@ -345,20 +363,20 @@ reference.</p>
 
 <p>This method updates an existing file in a repository.</p>
 
-<p>You can create a new file using <code class="language-plaintext highlighter-rouge">createFile</code>, it takes as arguments:</p>
+<p>You can update a file using <code class="highlighter-rouge">updateFile</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
-  <li><code class="language-plaintext highlighter-rouge">message</code>: The message to use for creating the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">content</code>: The content of the new file, as an array of bytes.</li>
-  <li><code class="language-plaintext highlighter-rouge">sha</code>: The blob SHA of the file being replaced. (This is returned as part of a <code class="language-plaintext highlighter-rouge">getContents</code> call). GitHub uses this value to perform optimistic locking. If the file has been updated since, the update call will fail.</li>
-  <li><code class="language-plaintext highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
-  <li><code class="language-plaintext highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
+  <li><code class="highlighter-rouge">message</code>: The message to use for creating the commit.</li>
+  <li><code class="highlighter-rouge">content</code>: The content of the new file, as an array of bytes.</li>
+  <li><code class="highlighter-rouge">sha</code>: The blob SHA of the file being replaced. (This is returned as part of a <code class="highlighter-rouge">getContents</code> call). GitHub uses this value to perform optimistic locking. If the file has been updated since, the update call will fail.</li>
+  <li><code class="highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
+  <li><code class="highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
+  <li><code class="highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
 </ul>
 
-<p>To create a file:</p>
+<p>To update a file:</p>
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">getContents</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">repos</span><span class="o">.</span><span class="py">updateFile</span><span class="o">(</span><span class="s">"47degrees"</span><span class="o">,</span> <span class="s">"github4s"</span><span class="o">,</span> <span class="s">"README.md"</span><span class="o">,</span> <span class="s">"A terser README."</span><span class="o">,</span> <span class="s">"You read me right."</span><span class="o">.</span><span class="py">getBytes</span><span class="o">,</span><span class="s">"a52d080d2cf85e08bfcb441b437d3982398e8f8f6a58388f55d6b6cf51cb5365"</span><span class="o">)</span>
 
 <span class="nv">getContents</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">().</span><span class="py">result</span> <span class="k">match</span> <span class="o">{</span>
@@ -373,16 +391,16 @@ reference.</p>
 
 <p>This method deletes an existing file in a repository.</p>
 
-<p>You can create a new file using <code class="language-plaintext highlighter-rouge">deleteFile</code>, it takes as arguments:</p>
+<p>You can create a new file using <code class="highlighter-rouge">deleteFile</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
-  <li><code class="language-plaintext highlighter-rouge">message</code>: The message to use for creating the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">sha</code>: The blob SHA of the file being replaced. (This is returned as part of a <code class="language-plaintext highlighter-rouge">getContents</code> call). GitHub uses this value to perform optimistic locking. If the file has been updated since, the update call will fail.</li>
-  <li><code class="language-plaintext highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
-  <li><code class="language-plaintext highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
-  <li><code class="language-plaintext highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">path</code>: The path of the new file to be created, <em>without</em> a leading slash.</li>
+  <li><code class="highlighter-rouge">message</code>: The message to use for creating the commit.</li>
+  <li><code class="highlighter-rouge">sha</code>: The blob SHA of the file being replaced. (This is returned as part of a <code class="highlighter-rouge">getContents</code> call). GitHub uses this value to perform optimistic locking. If the file has been updated since, the update call will fail.</li>
+  <li><code class="highlighter-rouge">branch</code>: The branch to add the commit to. If omitted, this defaults to the repository’s default branch.</li>
+  <li><code class="highlighter-rouge">committer</code>: An optional committer to associate with the commit. If omitted, the authenticated user’s information is used for the commit.</li>
+  <li><code class="highlighter-rouge">author</code>: An optional author to associate with the commit. If omitted, the committer is used (if present).</li>
 </ul>
 
 <p>To create a file:</p>
@@ -400,11 +418,11 @@ reference.</p>
 
 <h3 id="list-of-releases">List of releases</h3>
 
-<p>You can list releases using <code class="language-plaintext highlighter-rouge">listReleases</code>, it takes as arguments:</p>
+<p>You can list releases using <code class="highlighter-rouge">listReleases</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code> Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">pagination</code> Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To list releases:</p>
@@ -422,15 +440,15 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Release]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Release]</a>.</p>
 
 <h3 id="get-a-single-release">Get a single release</h3>
 
-<p>You can get a release using <code class="language-plaintext highlighter-rouge">getRelease</code>, it takes as arguments:</p>
+<p>You can get a release using <code class="highlighter-rouge">getRelease</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the release coordinates (<code class="language-plaintext highlighter-rouge">releaseId</code> the id of the release)</li>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the release coordinates (<code class="highlighter-rouge">releaseId</code> the id of the release)</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
 </ul>
 
 <p>Get a release by release id:</p>
@@ -447,14 +465,14 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Option[Release]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Option[Release]</a>.</p>
 
 <h3 id="the-latest-release">The latest release</h3>
 
-<p>You can get the latest release using <code class="language-plaintext highlighter-rouge">latestRelease</code>, it takes as arguments:</p>
+<p>You can get the latest release using <code class="highlighter-rouge">latestRelease</code>, it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
 </ul>
 
 <p>Get the latest release:</p>
@@ -470,21 +488,21 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Option[Release]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Option[Release]</a>.</p>
 
 <h3 id="create-a-release">Create a release</h3>
 
-<p>Users with push access to the repository can create a release using <code class="language-plaintext highlighter-rouge">createRelease</code>; it takes as arguments:</p>
+<p>Users with push access to the repository can create a release using <code class="highlighter-rouge">createRelease</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">tag_name</code>: The name of the tag.</li>
-  <li><code class="language-plaintext highlighter-rouge">name</code>: The name of the release.</li>
-  <li><code class="language-plaintext highlighter-rouge">body</code>: Text describing the contents of the tag.</li>
-  <li><code class="language-plaintext highlighter-rouge">target_commitish</code>: Specifies the commitish value that determines where the <code class="language-plaintext highlighter-rouge">Git tag</code> is created from.
-Can be any branch or commit <code class="language-plaintext highlighter-rouge">SHA</code>. Unused if the <code class="language-plaintext highlighter-rouge">Git tag</code> already exists. Default: the repository’s default branch (usually <code class="language-plaintext highlighter-rouge">master</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">draft</code>: true to create a draft (unpublished) release, false to create a published one. Default: false.</li>
-  <li><code class="language-plaintext highlighter-rouge">prerelease</code>: true to identify the release as a pre-release. false to identify the release as a full release. Default: false.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">tag_name</code>: The name of the tag.</li>
+  <li><code class="highlighter-rouge">name</code>: The name of the release.</li>
+  <li><code class="highlighter-rouge">body</code>: Text describing the contents of the tag.</li>
+  <li><code class="highlighter-rouge">target_commitish</code>: Specifies the commitish value that determines where the <code class="highlighter-rouge">Git tag</code> is created from.
+Can be any branch or commit <code class="highlighter-rouge">SHA</code>. Unused if the <code class="highlighter-rouge">Git tag</code> already exists. Default: the repository’s default branch (usually <code class="highlighter-rouge">master</code>).</li>
+  <li><code class="highlighter-rouge">draft</code>: true to create a draft (unpublished) release, false to create a published one. Default: false.</li>
+  <li><code class="highlighter-rouge">prerelease</code>: true to identify the release as a pre-release. false to identify the release as a full release. Default: false.</li>
 </ul>
 
 <p>To create a release:</p>
@@ -498,7 +516,7 @@ Can be any branch or commit <code class="language-plaintext highlighter-rouge">S
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the created <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Release</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the created <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Release</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/releases/#create-a-release">the API doc</a> for full
 reference.</p>
@@ -507,11 +525,11 @@ reference.</p>
 
 <h3 id="create-a-status">Create a status</h3>
 
-<p>You can create a status using <code class="language-plaintext highlighter-rouge">createStatus</code>; it takes as arguments:</p>
+<p>You can create a status using <code class="highlighter-rouge">createStatus</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li>the <code class="language-plaintext highlighter-rouge">SHA</code> of the commit for which we want to create a status.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li>the <code class="highlighter-rouge">SHA</code> of the commit for which we want to create a status.</li>
   <li>the state of the status we want to create (can be pending, success, failure or error).</li>
   <li>other optional parameters: target url, description and context.</li>
 </ul>
@@ -526,19 +544,19 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the created <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Status</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the created <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">Status</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/statuses/#create-a-status">the API doc</a> for full
 reference.</p>
 
 <h3 id="list-statuses-for-a-specific-ref">List statuses for a specific ref</h3>
 
-<p>You can also list statuses through <code class="language-plaintext highlighter-rouge">listStatuses</code>; it take as arguments:</p>
+<p>You can also list statuses through <code class="highlighter-rouge">listStatuses</code>; it take as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li>a git ref (a <code class="language-plaintext highlighter-rouge">SHA</code>, a branch <code class="language-plaintext highlighter-rouge">name</code> or a tag <code class="language-plaintext highlighter-rouge">name</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li>a git ref (a <code class="highlighter-rouge">SHA</code>, a branch <code class="highlighter-rouge">name</code> or a tag <code class="highlighter-rouge">name</code>).</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
 <p>To list the statuses for a specific ref:</p>
@@ -551,14 +569,14 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Status]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">List[Status]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/repos/statuses/#list-statuses-for-a-specific-ref">the API doc</a>
 for full reference.</p>
 
 <h3 id="get-the-combined-status-for-a-specific-ref">Get the combined status for a specific ref</h3>
 
-<p>Lastly, you can also get the combined status thanks to <code class="language-plaintext highlighter-rouge">getCombinedStatus</code>; it takes the same
+<p>Lastly, you can also get the combined status thanks to <code class="highlighter-rouge">getCombinedStatus</code>; it takes the same
 arguments as the operation listing statuses:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">combinedStatus</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">repos</span><span class="o">.</span><span class="py">getCombinedStatus</span><span class="o">(</span><span class="s">"47degrees"</span><span class="o">,</span> <span class="s">"github4s"</span><span class="o">,</span> <span class="s">"heads/master"</span><span class="o">)</span>
@@ -569,7 +587,7 @@ arguments as the operation listing statuses:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">CombinedStatus</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Repository.scala">CombinedStatus</a>.</p>
 
 <p>Note that the state of the combined status is the product of a heuristic detailed in
 <a href="https://developer.github.com/v3/repos/statuses/#get-the-combined-status-for-a-specific-ref">the API documentation</a>.</p>

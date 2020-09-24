@@ -45,10 +45,10 @@ with Github4s, you can interact with:</p>
 
 <h3 id="get-a-pull-request">Get a pull request</h3>
 
-<p>You can get a single pull request for a repository using <code class="language-plaintext highlighter-rouge">get</code>; it takes as arguments:</p>
+<p>You can get a single pull request for a repository using <code class="highlighter-rouge">get</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
   <li>the pull request number</li>
 </ul>
 
@@ -62,16 +62,16 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">PullRequest</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">PullRequest</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/pulls/#get-a-single-pull-request">the API doc</a> for full reference.</p>
 
 <h3 id="list-pull-requests">List pull requests</h3>
 
-<p>You can list the pull requests for a repository using <code class="language-plaintext highlighter-rouge">list</code>; it takes as arguments:</p>
+<p>You can list the pull requests for a repository using <code class="highlighter-rouge">list</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
   <li>a list of <a href="https://github.com/47degrees/github4s/blob/master/github4s/shared/src/main/scala/github4s/free/domain/PullRequest.scala">PRFilter</a>.</li>
 </ul>
 
@@ -88,16 +88,16 @@ by popularity:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequest]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequest]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/pulls/#list-pull-requests">the API doc</a> for full reference.</p>
 
 <h3 id="list-the-files-in-a-pull-request">List the files in a pull request</h3>
 
-<p>You can also list the files for a pull request using <code class="language-plaintext highlighter-rouge">listFiles</code>; it takes as arguments:</p>
+<p>You can also list the files for a pull request using <code class="highlighter-rouge">listFiles</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
   <li>the pull request number.</li>
 </ul>
 
@@ -111,7 +111,7 @@ by popularity:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>the <code class="language-plaintext highlighter-rouge">result</code> on the right is the <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequestFile]</a>.</p>
+<p>the <code class="highlighter-rouge">result</code> on the right is the <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequestFile]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/pulls/#list-pull-requests-files">the API doc</a> for full
 reference.</p>
@@ -123,12 +123,12 @@ reference.</p>
 <p>On the one hand, we can pass the following parameters:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
-  <li><code class="language-plaintext highlighter-rouge">title</code> (as part of the <code class="language-plaintext highlighter-rouge">NewPullRequestData</code> object): Title for the pull request.</li>
-  <li><code class="language-plaintext highlighter-rouge">body</code> (as part of the <code class="language-plaintext highlighter-rouge">NewPullRequestData</code> object): Description for the pull request.</li>
-  <li><code class="language-plaintext highlighter-rouge">head</code>: The name of the branch where your changes are implemented.</li>
-  <li><code class="language-plaintext highlighter-rouge">base</code>: The name of the branch you want the changes pulled into.</li>
-  <li><code class="language-plaintext highlighter-rouge">maintainerCanModify</code>: Optional. Indicates whether maintainers can modify the pull request. <code class="language-plaintext highlighter-rouge">true</code> by default.</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
+  <li><code class="highlighter-rouge">title</code> (as part of the <code class="highlighter-rouge">NewPullRequestData</code> object): Title for the pull request.</li>
+  <li><code class="highlighter-rouge">body</code> (as part of the <code class="highlighter-rouge">NewPullRequestData</code> object): Description for the pull request.</li>
+  <li><code class="highlighter-rouge">head</code>: The name of the branch where your changes are implemented.</li>
+  <li><code class="highlighter-rouge">base</code>: The name of the branch you want the changes pulled into.</li>
+  <li><code class="highlighter-rouge">maintainerCanModify</code>: Optional. Indicates whether maintainers can modify the pull request. <code class="highlighter-rouge">true</code> by default.</li>
 </ul>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">github4s.domain.NewPullRequestData</span>
@@ -147,7 +147,7 @@ reference.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>On the other hand, we can pass an <code class="language-plaintext highlighter-rouge">issue</code> id (through <code class="language-plaintext highlighter-rouge">NewPullRequestIssue</code> object)
+<p>On the other hand, we can pass an <code class="highlighter-rouge">issue</code> id (through <code class="highlighter-rouge">NewPullRequestIssue</code> object)
 instead of the title and body.</p>
 
 <p><strong>NOTE</strong>: This option deletes the issue.</p>
@@ -173,14 +173,14 @@ instead of the title and body.</p>
 
 <h3 id="list-pull-request-reviews">List pull request reviews</h3>
 
-<p>You can list the reviews for a pull request using <code class="language-plaintext highlighter-rouge">listReviews</code>; it takes as arguments:</p>
+<p>You can list the reviews for a pull request using <code class="highlighter-rouge">listReviews</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
   <li>the pull request id.</li>
 </ul>
 
-<p>As an example, if we wanted to see all the reviews for pull request 139 of <code class="language-plaintext highlighter-rouge">47degrees/github4s</code>:</p>
+<p>As an example, if we wanted to see all the reviews for pull request 139 of <code class="highlighter-rouge">47degrees/github4s</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listReviews</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">pullRequests</span><span class="o">.</span><span class="py">listReviews</span><span class="o">(</span>
   <span class="s">"47deg"</span><span class="o">,</span>
@@ -193,21 +193,21 @@ instead of the title and body.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequestReview]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">List[PullRequestReview]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/pulls/reviews/#list-reviews-on-a-pull-request">the API doc</a> for full reference.</p>
 
 <h3 id="get-an-individual-review">Get an individual review</h3>
 
-<p>You can get an individual review for a pull request using <code class="language-plaintext highlighter-rouge">getReview</code>; it takes as arguments:</p>
+<p>You can get an individual review for a pull request using <code class="highlighter-rouge">getReview</code>; it takes as arguments:</p>
 
 <ul>
-  <li>the repository coordinates (<code class="language-plaintext highlighter-rouge">owner</code> and <code class="language-plaintext highlighter-rouge">name</code> of the repository).</li>
+  <li>the repository coordinates (<code class="highlighter-rouge">owner</code> and <code class="highlighter-rouge">name</code> of the repository).</li>
   <li>the pull request id.</li>
   <li>the review id.</li>
 </ul>
 
-<p>As an example, if we wanted to see review 39355613 for pull request 139 of <code class="language-plaintext highlighter-rouge">47degrees/github4s</code>:</p>
+<p>As an example, if we wanted to see review 39355613 for pull request 139 of <code class="highlighter-rouge">47degrees/github4s</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">review</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">pullRequests</span><span class="o">.</span><span class="py">getReview</span><span class="o">(</span>
   <span class="s">"47deg"</span><span class="o">,</span>
@@ -221,7 +221,7 @@ instead of the title and body.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">PullRequestReview</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the matching <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala">PullRequestReview</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/pulls/reviews/#get-a-single-review">the API doc</a> for full reference.</p>
 

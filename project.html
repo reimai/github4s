@@ -2,8 +2,8 @@
 
 <p>Note: The Projects API is currently available for developers to preview. During the preview period,
 the API may change without advance notice. Please see the blog post for full details. To access the
-API during the preview period, you must provide a custom media type in the <code class="language-plaintext highlighter-rouge">Accept</code> header:
- <code class="language-plaintext highlighter-rouge">application/vnd.github.inertia-preview+json</code></p>
+API during the preview period, you must provide a custom media type in the <code class="highlighter-rouge">Accept</code> header:
+ <code class="highlighter-rouge">application/vnd.github.inertia-preview+json</code></p>
 
 <p>Github4s supports the <a href="https://developer.github.com/v3/projects/">Project API</a>. As a result,
 with Github4s, you can interact with:</p>
@@ -52,17 +52,17 @@ with Github4s, you can interact with:</p>
 
 <h3 id="list-repository-projects">List repository projects</h3>
 
-<p>You can list the projects for a particular repository with <code class="language-plaintext highlighter-rouge">listProjectsRepository</code>; it takes as arguments:</p>
+<p>You can list the projects for a particular repository with <code class="highlighter-rouge">listProjectsRepository</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">owner</code>: name of the owner for which we want to retrieve the projects.</li>
-  <li><code class="language-plaintext highlighter-rouge">repo</code>: name of the repository for which we want to retrieve the projects.</li>
-  <li><code class="language-plaintext highlighter-rouge">state</code>: filter projects returned by their state. Can be either <code class="language-plaintext highlighter-rouge">open</code>, <code class="language-plaintext highlighter-rouge">closed</code>, <code class="language-plaintext highlighter-rouge">all</code>. Default: <code class="language-plaintext highlighter-rouge">open</code>, optional</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">header</code>: headers to include in the request, optional.</li>
+  <li><code class="highlighter-rouge">owner</code>: name of the owner for which we want to retrieve the projects.</li>
+  <li><code class="highlighter-rouge">repo</code>: name of the repository for which we want to retrieve the projects.</li>
+  <li><code class="highlighter-rouge">state</code>: filter projects returned by their state. Can be either <code class="highlighter-rouge">open</code>, <code class="highlighter-rouge">closed</code>, <code class="highlighter-rouge">all</code>. Default: <code class="highlighter-rouge">open</code>, optional</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">header</code>: headers to include in the request, optional.</li>
 </ul>
 
-<p>To list the projects for owner <code class="language-plaintext highlighter-rouge">47deg</code> and repository <code class="language-plaintext highlighter-rouge">github4s</code>:</p>
+<p>To list the projects for owner <code class="highlighter-rouge">47deg</code> and repository <code class="highlighter-rouge">github4s</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listProjectsRepository</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">projects</span><span class="o">.</span><span class="py">listProjectsRepository</span><span class="o">(</span>
     <span class="n">owner</span> <span class="k">=</span> <span class="s">"47deg"</span><span class="o">,</span>
@@ -75,22 +75,22 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Project]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Project]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/projects/#list-repository-projects">the API doc</a> for full reference.</p>
 
 <h3 id="list-projects">List projects</h3>
 
-<p>You can list the project for a particular organization with <code class="language-plaintext highlighter-rouge">listProjects</code>; it takes as arguments:</p>
+<p>You can list the project for a particular organization with <code class="highlighter-rouge">listProjects</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">org</code>: name of the organization for which we want to retrieve the projects.</li>
-  <li><code class="language-plaintext highlighter-rouge">state</code>: filter projects returned by their state. Can be either <code class="language-plaintext highlighter-rouge">open</code>, <code class="language-plaintext highlighter-rouge">closed</code>, <code class="language-plaintext highlighter-rouge">all</code>. Default: <code class="language-plaintext highlighter-rouge">open</code>, optional</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">header</code>: headers to include in the request, optional.</li>
+  <li><code class="highlighter-rouge">org</code>: name of the organization for which we want to retrieve the projects.</li>
+  <li><code class="highlighter-rouge">state</code>: filter projects returned by their state. Can be either <code class="highlighter-rouge">open</code>, <code class="highlighter-rouge">closed</code>, <code class="highlighter-rouge">all</code>. Default: <code class="highlighter-rouge">open</code>, optional</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">header</code>: headers to include in the request, optional.</li>
 </ul>
 
-<p>To list the projects for organization <code class="language-plaintext highlighter-rouge">47deg</code>:</p>
+<p>To list the projects for organization <code class="highlighter-rouge">47deg</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listProjects</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">projects</span><span class="o">.</span><span class="py">listProjects</span><span class="o">(</span>
     <span class="n">org</span> <span class="k">=</span> <span class="s">"47deg"</span><span class="o">,</span>
@@ -102,7 +102,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Project]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Project]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/projects/#list-organization-projects">the API doc</a> for full reference.</p>
 
@@ -110,15 +110,15 @@ with Github4s, you can interact with:</p>
 
 <h4 id="list-project-columns">List project columns</h4>
 
-<p>You can list the columns for a particular project with <code class="language-plaintext highlighter-rouge">listColumns</code>; it takes as arguments:</p>
+<p>You can list the columns for a particular project with <code class="highlighter-rouge">listColumns</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">project_id</code>: project id for which we want to retrieve the columns.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">header</code>: headers to include in the request, optional.</li>
+  <li><code class="highlighter-rouge">project_id</code>: project id for which we want to retrieve the columns.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">header</code>: headers to include in the request, optional.</li>
 </ul>
 
-<p>To list the columns for project_id <code class="language-plaintext highlighter-rouge">1910444</code>:</p>
+<p>To list the columns for project_id <code class="highlighter-rouge">1910444</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listColumns</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">projects</span><span class="o">.</span><span class="py">listColumns</span><span class="o">(</span>
     <span class="n">project_id</span> <span class="k">=</span> <span class="mi">1910444</span><span class="o">,</span>
@@ -130,7 +130,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Column]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Column]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/projects/columns/#list-project-columns">the API doc</a> for full reference.</p>
 
@@ -138,17 +138,17 @@ with Github4s, you can interact with:</p>
 
 <h4 id="list-project-cards-by-column">List project cards by column</h4>
 
-<p>You can list the cards for a particular column with <code class="language-plaintext highlighter-rouge">listCards</code>; it takes as arguments:</p>
+<p>You can list the cards for a particular column with <code class="highlighter-rouge">listCards</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">column_id</code>: column id for which we want to retrieve the cards.</li>
-  <li><code class="language-plaintext highlighter-rouge">archived_state</code>: filters the project cards that are returned by the card’s state.
-Can be one of <code class="language-plaintext highlighter-rouge">all</code>,<code class="language-plaintext highlighter-rouge">archived</code>, or <code class="language-plaintext highlighter-rouge">not_archived</code>. Default: <code class="language-plaintext highlighter-rouge">not_archived</code>, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
-  <li><code class="language-plaintext highlighter-rouge">header</code>: headers to include in the request, optional.</li>
+  <li><code class="highlighter-rouge">column_id</code>: column id for which we want to retrieve the cards.</li>
+  <li><code class="highlighter-rouge">archived_state</code>: filters the project cards that are returned by the card’s state.
+Can be one of <code class="highlighter-rouge">all</code>,<code class="highlighter-rouge">archived</code>, or <code class="highlighter-rouge">not_archived</code>. Default: <code class="highlighter-rouge">not_archived</code>, optional.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">header</code>: headers to include in the request, optional.</li>
 </ul>
 
-<p>To list the columns for project_id <code class="language-plaintext highlighter-rouge">8271018</code>:</p>
+<p>To list the columns for project_id <code class="highlighter-rouge">8271018</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listCards</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">projects</span><span class="o">.</span><span class="py">listCards</span><span class="o">(</span>
     <span class="n">column_id</span> <span class="k">=</span> <span class="mi">8271018</span><span class="o">,</span>
@@ -160,7 +160,7 @@ Can be one of <code class="language-plaintext highlighter-rouge">all</code>,<cod
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Card]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Project.scala">List[Card]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/projects/cards/#list-project-cards">the API doc</a> for full reference.</p>
 

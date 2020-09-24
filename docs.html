@@ -9,9 +9,9 @@ appropriate scopes (i.e. if you want to create gists, your token will need to ha
 
 <p>Github4s uses <a href="https://typelevel.org/blog/2017/12/27/optimizing-final-tagless.html">Tagless Final encoding</a>.</p>
 
-<p>Every Github4s API call returns an <code class="language-plaintext highlighter-rouge">F[GHResponse[A]]</code> where <code class="language-plaintext highlighter-rouge">F</code> has an instance of <a href="https://typelevel.org/cats-effect/typeclasses/sync.html">cats.effect.Sync</a>.</p>
+<p>Every Github4s API call returns an <code class="highlighter-rouge">F[GHResponse[A]]</code> where <code class="highlighter-rouge">F</code> has an instance of <a href="https://typelevel.org/cats-effect/typeclasses/sync.html">cats.effect.Sync</a>.</p>
 
-<p><code class="language-plaintext highlighter-rouge">GHResponse[A]</code> contains the result <code class="language-plaintext highlighter-rouge">A</code> given by Github (or an error) as well as the status code and
+<p><code class="highlighter-rouge">GHResponse[A]</code> contains the result <code class="highlighter-rouge">A</code> given by Github (or an error) as well as the status code and
 headers of the response:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">final</span> <span class="k">case</span> <span class="k">class</span> <span class="nc">GHResponse</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span>
@@ -22,8 +22,8 @@ headers of the response:</p>
 </code></pre></div></div>
 
 <p>To make HTTP calls, Github4s relies on <a href="https://http4s.org/v0.21/client/">an http4s’ HTTP client</a> which needs to be
-supplied as we’ll see later. Here, we are making use of <code class="language-plaintext highlighter-rouge">JavaNetClientBuilder</code> because of its ease
-of use in a REPL. However, for production use you should prefer <code class="language-plaintext highlighter-rouge">BlazeClientBuilder</code> over it as
+supplied as we’ll see later. Here, we are making use of <code class="highlighter-rouge">JavaNetClientBuilder</code> because of its ease
+of use in a REPL. However, for production use you should prefer <code class="highlighter-rouge">BlazeClientBuilder</code> over it as
 detailed in <a href="https://http4s.org/v0.21/client/">the documentation</a>.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.util.concurrent.Executors</span>
@@ -48,25 +48,25 @@ detailed in <a href="https://http4s.org/v0.21/client/">the documentation</a>.</p
 <span class="k">val</span> <span class="nv">user1</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">httpClient</span><span class="o">,</span> <span class="n">accessToken</span><span class="o">).</span><span class="py">users</span><span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"rafaparadela"</span><span class="o">)</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">user1</code> in this case is a <code class="language-plaintext highlighter-rouge">IO[GHResponse[User]]</code>.</p>
+<p><code class="highlighter-rouge">user1</code> in this case is a <code class="highlighter-rouge">IO[GHResponse[User]]</code>.</p>
 
 <h2 id="error-handling">Error handling</h2>
 
 <p>Depending on the response issued by GitHub, you might find yourself in the unhappy path of
-<code class="language-plaintext highlighter-rouge">GHResponse</code>. In this case you will have a <code class="language-plaintext highlighter-rouge">Left</code> as <code class="language-plaintext highlighter-rouge">GHResponse#result</code> which contains a <code class="language-plaintext highlighter-rouge">GHError</code>.</p>
+<code class="highlighter-rouge">GHResponse</code>. In this case you will have a <code class="highlighter-rouge">Left</code> as <code class="highlighter-rouge">GHResponse#result</code> which contains a <code class="highlighter-rouge">GHError</code>.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">GHError</code> ADT defines different cases based on the response’s status code:</p>
+<p>The <code class="highlighter-rouge">GHError</code> ADT defines different cases based on the response’s status code:</p>
 <ul>
-  <li>400 maps to <code class="language-plaintext highlighter-rouge">BadRequestError</code></li>
-  <li>401   -&gt;    <code class="language-plaintext highlighter-rouge">UnauthorizedError</code></li>
-  <li>403   -&gt;    <code class="language-plaintext highlighter-rouge">ForbiddenError</code></li>
-  <li>404   -&gt;    <code class="language-plaintext highlighter-rouge">NotFoundError</code></li>
-  <li>422   -&gt;    <code class="language-plaintext highlighter-rouge">UnprocessableEntityError</code></li>
-  <li>423   -&gt;    <code class="language-plaintext highlighter-rouge">RateLimitExceededError</code></li>
+  <li>400 maps to <code class="highlighter-rouge">BadRequestError</code></li>
+  <li>401   -&gt;    <code class="highlighter-rouge">UnauthorizedError</code></li>
+  <li>403   -&gt;    <code class="highlighter-rouge">ForbiddenError</code></li>
+  <li>404   -&gt;    <code class="highlighter-rouge">NotFoundError</code></li>
+  <li>422   -&gt;    <code class="highlighter-rouge">UnprocessableEntityError</code></li>
+  <li>423   -&gt;    <code class="highlighter-rouge">RateLimitExceededError</code></li>
 </ul>
 
 <p>Thanks to these, you can fine-grain your logic according to your needs. E.g. if you’re hitting a
-<code class="language-plaintext highlighter-rouge">RateLimitExceededError</code>, it might be worth it to inspect the headers and wait accordingly before
+<code class="highlighter-rouge">RateLimitExceededError</code>, it might be worth it to inspect the headers and wait accordingly before
 retrying your request.</p>
 
 <p>We support an extensive set of errors. However, since GitHub’s documentation regarding
@@ -75,8 +75,8 @@ errors is not exhaustive.</p>
 
 <p>If you find an unsupported error, which translates into either:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">UnhandledResponseError</code> which corresponds to a status code which was not handled, or</li>
-  <li><code class="language-plaintext highlighter-rouge">JsonParsingError</code> which indicates that the JSON sent back by GitHub couldn’t be decoded into
+  <li><code class="highlighter-rouge">UnhandledResponseError</code> which corresponds to a status code which was not handled, or</li>
+  <li><code class="highlighter-rouge">JsonParsingError</code> which indicates that the JSON sent back by GitHub couldn’t be decoded into
 the case classes defined by github4s,
 please create an issue at https://github.com/47degrees/github4s/issues.</li>
 </ul>
@@ -85,10 +85,10 @@ please create an issue at https://github.com/47degrees/github4s/issues.</li>
 
 <p>Github4s supports different effect types which we will go through next.</p>
 
-<h3 id="using-f_-catseffectsync">Using <code class="language-plaintext highlighter-rouge">F[_]: cats.effect.Sync</code></h3>
+<h3 id="using-f_-catseffectsync">Using <code class="highlighter-rouge">F[_]: cats.effect.Sync</code></h3>
 
-<p>Any type with a <code class="language-plaintext highlighter-rouge">cats.effect.Sync</code> instance can be used with this example, such as
-<code class="language-plaintext highlighter-rouge">monix.eval.Task</code>.</p>
+<p>Any type with a <code class="highlighter-rouge">cats.effect.Sync</code> instance can be used with this example, such as
+<code class="highlighter-rouge">monix.eval.Task</code>.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramF</span> <span class="o">{</span>
   <span class="k">import</span> <span class="nn">cats.effect.Sync</span>
@@ -102,7 +102,7 @@ please create an issue at https://github.com/47degrees/github4s/issues.</li>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="using-catseffectio">Using <code class="language-plaintext highlighter-rouge">cats.effect.IO</code></h3>
+<h3 id="using-catseffectio">Using <code class="highlighter-rouge">cats.effect.IO</code></h3>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramIO</span> <span class="o">{</span>
   <span class="k">import</span> <span class="nn">java.util.concurrent.Executors</span>
@@ -125,9 +125,9 @@ please create an issue at https://github.com/47degrees/github4s/issues.</li>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="using-catsid">Using <code class="language-plaintext highlighter-rouge">cats.Id</code></h3>
+<h3 id="using-catsid">Using <code class="highlighter-rouge">cats.Id</code></h3>
 
-<p>Support for <code class="language-plaintext highlighter-rouge">cats.Id</code> is provided with <code class="language-plaintext highlighter-rouge">GithubIOSyntax</code> which contains syntax to lift from <code class="language-plaintext highlighter-rouge">IO</code>.</p>
+<p>Support for <code class="highlighter-rouge">cats.Id</code> is provided with <code class="highlighter-rouge">GithubIOSyntax</code> which contains syntax to lift from <code class="highlighter-rouge">IO</code>.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramId</span> <span class="o">{</span>
   <span class="k">import</span> <span class="nn">java.util.concurrent.Executors</span>
@@ -150,9 +150,9 @@ please create an issue at https://github.com/47degrees/github4s/issues.</li>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="using-future">Using <code class="language-plaintext highlighter-rouge">Future</code></h3>
+<h3 id="using-future">Using <code class="highlighter-rouge">Future</code></h3>
 
-<p>Support for <code class="language-plaintext highlighter-rouge">Future</code> is provided with <code class="language-plaintext highlighter-rouge">GithubIOSyntax</code> which contains syntax to lift from <code class="language-plaintext highlighter-rouge">IO</code>.</p>
+<p>Support for <code class="highlighter-rouge">Future</code> is provided with <code class="highlighter-rouge">GithubIOSyntax</code> which contains syntax to lift from <code class="highlighter-rouge">IO</code>.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">ProgramFuture</span> <span class="o">{</span>
   <span class="k">import</span> <span class="nn">java.util.concurrent.Executors</span>
@@ -180,11 +180,11 @@ please create an issue at https://github.com/47degrees/github4s/issues.</li>
 
 <h2 id="using-github4s-with-github-enterprise">Using github4s with GitHub Enterprise</h2>
 
-<p>By default <code class="language-plaintext highlighter-rouge">Github</code> instances are configured for the <a href="https://github.com">public GitHub</a> endpoints via a fallback
-<code class="language-plaintext highlighter-rouge">GithubConfig</code> instance which is picked up by the <code class="language-plaintext highlighter-rouge">Github</code> constructor if there’s no other <code class="language-plaintext highlighter-rouge">GithubConfig</code> in the scope.</p>
+<p>By default <code class="highlighter-rouge">Github</code> instances are configured for the <a href="https://github.com">public GitHub</a> endpoints via a fallback
+<code class="highlighter-rouge">GithubConfig</code> instance which is picked up by the <code class="highlighter-rouge">Github</code> constructor if there’s no other <code class="highlighter-rouge">GithubConfig</code> in the scope.</p>
 
 <p>It is also possible to pass a custom GitHub configuration (e.g. for a particular <a href="https://github.com/enterprise">GitHub Enterprise</a>
-server). To override the default configuration values declare a custom <code class="language-plaintext highlighter-rouge">GithubConfig</code> instance in an appropriate
+server). To override the default configuration values declare a custom <code class="highlighter-rouge">GithubConfig</code> instance in an appropriate
 scope:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">github4s.</span><span class="o">{</span><span class="nc">Github</span><span class="o">,</span> <span class="nc">GithubConfig</span><span class="o">}</span>
@@ -198,7 +198,7 @@ scope:</p>
 
 <span class="k">val</span> <span class="nv">github</span> <span class="k">=</span> <span class="nc">Github</span><span class="o">[</span><span class="kt">IO</span><span class="o">](</span><span class="n">httpClient</span><span class="o">,</span> <span class="nc">None</span><span class="o">)</span>
 </code></pre></div></div>
-<p>Please refer your GitHub Enterprise server docs for exact URL values for <code class="language-plaintext highlighter-rouge">baseUrl</code>, <code class="language-plaintext highlighter-rouge">authorizeUrl</code> and <code class="language-plaintext highlighter-rouge">accessTokenUrl</code>.</p>
+<p>Please refer your GitHub Enterprise server docs for exact URL values for <code class="highlighter-rouge">baseUrl</code>, <code class="highlighter-rouge">authorizeUrl</code> and <code class="highlighter-rouge">accessTokenUrl</code>.</p>
 
 <h2 id="specifying-custom-headers">Specifying custom headers</h2>
 
@@ -224,8 +224,8 @@ scope:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Additionally, thanks to the aforementioned <code class="language-plaintext highlighter-rouge">GithubConfig</code>, it is also possible to specify custom
-headers which will be added to every request sent to the GitHub API. The user agent <code class="language-plaintext highlighter-rouge">github4s</code> is
+<p>Additionally, thanks to the aforementioned <code class="highlighter-rouge">GithubConfig</code>, it is also possible to specify custom
+headers which will be added to every request sent to the GitHub API. The user agent <code class="highlighter-rouge">github4s</code> is
 added by default.</p>
 
 </section></div></div></div></div><script src="/github4s/highlight/highlight.pack.js"></script><script>

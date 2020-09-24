@@ -36,14 +36,14 @@ with Github4s, you can interact with:</p>
 
 <h3 id="list-team">List team</h3>
 
-<p>You can list the teams for a particular organization with <code class="language-plaintext highlighter-rouge">listTeams</code>; it takes as arguments:</p>
+<p>You can list the teams for a particular organization with <code class="highlighter-rouge">listTeams</code>; it takes as arguments:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">org</code>: name of the organization for which we want to retrieve the teams.</li>
-  <li><code class="language-plaintext highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
+  <li><code class="highlighter-rouge">org</code>: name of the organization for which we want to retrieve the teams.</li>
+  <li><code class="highlighter-rouge">pagination</code>: Limit and Offset for pagination, optional.</li>
 </ul>
 
-<p>To list the teams for organization <code class="language-plaintext highlighter-rouge">47deg</code>:</p>
+<p>To list the teams for organization <code class="highlighter-rouge">47deg</code>:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">listTeams</span> <span class="k">=</span> <span class="nv">gh</span><span class="o">.</span><span class="py">teams</span><span class="o">.</span><span class="py">listTeams</span><span class="o">(</span><span class="s">"47deg"</span><span class="o">)</span>
 <span class="k">val</span> <span class="nv">response</span> <span class="k">=</span> <span class="nv">listTeams</span><span class="o">.</span><span class="py">unsafeRunSync</span><span class="o">()</span>
@@ -53,7 +53,7 @@ with Github4s, you can interact with:</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Team.scala">List[Team]</a>.</p>
+<p>The <code class="highlighter-rouge">result</code> on the right is the corresponding <a href="https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/Team.scala">List[Team]</a>.</p>
 
 <p>See <a href="https://developer.github.com/v3/teams/#list-teams">the API doc</a> for full reference.</p>
 
