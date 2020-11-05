@@ -16,18 +16,17 @@
 
 package github4s.interpreters
 
-import github4s.http.HttpClient
-import github4s.algebras.Issues
-import github4s.GHResponse
-import github4s.domain._
 import java.net.URLEncoder.encode
 import java.time.ZonedDateTime
 
 import github4s.Decoders._
 import github4s.Encoders._
+import github4s.GHResponse
+import github4s.algebras.Issues
+import github4s.domain._
+import github4s.http.HttpClient
 
-class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
-    extends Issues[F] {
+class IssuesInterpreter[F[_]](implicit client: HttpClient[F]) extends Issues[F] {
 
   override def listIssues(
       owner: String,
@@ -36,7 +35,7 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Issue]]] =
     client
-      .get[List[Issue]](accessToken, s"repos/$owner/$repo/issues", headers, pagination = pagination)
+      .get[List[Issue]](s"repos/$owner/$repo/issues", headers, pagination = pagination)
 
   override def getIssue(
       owner: String,
@@ -44,7 +43,7 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       number: Int,
       headers: Map[String, String]
   ): F[GHResponse[Issue]] =
-    client.get[Issue](accessToken, s"repos/$owner/$repo/issues/$number", headers)
+    client.get[Issue](s"repos/$owner/$repo/issues/$number", headers)
 
   override def searchIssues(
       query: String,
@@ -52,7 +51,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[SearchIssuesResult]] =
     client.get[SearchIssuesResult](
-      accessToken = accessToken,
       method = "search/issues",
       headers = headers,
       params = Map("q" -> s"${encode(query, "utf-8")}+${searchParams.map(_.value).mkString("+")}")
@@ -69,7 +67,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Issue]] =
     client.post[NewIssueRequest, Issue](
-      accessToken,
       s"repos/$owner/$repo/issues",
       headers,
       data = NewIssueRequest(title, body, labels, assignees, milestone)
@@ -88,7 +85,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Issue]] =
     client.patch[EditIssueRequest, Issue](
-      accessToken,
       s"repos/$owner/$repo/issues/$issue",
       headers,
       data = EditIssueRequest(state, title, body, labels, assignees, milestone)
@@ -103,7 +99,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
   ): F[GHResponse[List[Comment]]] =
     client
       .get[List[Comment]](
-        accessToken,
         s"repos/$owner/$repo/issues/$number/comments",
         headers,
         pagination = pagination
@@ -117,7 +112,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Comment]] =
     client.post[CommentData, Comment](
-      accessToken,
       s"repos/$owner/$repo/issues/$number/comments",
       headers,
       CommentData(body)
@@ -132,7 +126,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
   ): F[GHResponse[Comment]] =
     client
       .patch[CommentData, Comment](
-        accessToken,
         s"repos/$owner/$repo/issues/comments/$id",
         headers,
         CommentData(body)
@@ -144,7 +137,7 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       id: Long,
       headers: Map[String, String]
   ): F[GHResponse[Unit]] =
-    client.delete(accessToken, s"repos/$owner/$repo/issues/comments/$id", headers)
+    client.delete(s"repos/$owner/$repo/issues/comments/$id", headers)
 
   override def listLabelsRepository(
       owner: String,
@@ -153,7 +146,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Label]]] =
     client.get[List[Label]](
-      accessToken,
       s"repos/$owner/$repo/labels",
       headers = headers,
       pagination = pagination
@@ -167,7 +159,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Label]]] =
     client.get[List[Label]](
-      accessToken,
       s"repos/$owner/$repo/issues/$number/labels",
       headers,
       pagination = pagination
@@ -180,7 +171,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Label]] =
     client.post[Label, Label](
-      accessToken,
       s"repos/$owner/$repo/labels",
       headers,
       label
@@ -193,7 +183,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Label]] =
     client.patch[Label, Label](
-      accessToken,
       s"repos/$owner/$repo/labels/${label.name}",
       headers,
       label
@@ -206,7 +195,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Unit]] =
     client.delete(
-      accessToken,
       s"repos/$owner/$repo/labels/$label",
       headers
     )
@@ -219,7 +207,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Label]]] =
     client.post[List[String], List[Label]](
-      accessToken,
       s"repos/$owner/$repo/issues/$number/labels",
       headers,
       labels
@@ -233,7 +220,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Label]]] =
     client.deleteWithResponse[List[Label]](
-      accessToken,
       s"repos/$owner/$repo/issues/$number/labels/$label",
       headers
     )
@@ -245,7 +231,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[User]]] =
     client.get[List[User]](
-      accessToken,
       s"repos/$owner/$repo/assignees",
       headers,
       pagination = pagination
@@ -261,7 +246,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[List[Milestone]]] =
     client.get[List[Milestone]](
-      accessToken,
       s"repos/$owner/$repo/milestones",
       headers,
       pagination = pagination,
@@ -282,7 +266,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Milestone]] =
     client.post[MilestoneData, Milestone](
-      accessToken,
       s"repos/$owner/$repo/milestones",
       headers,
       MilestoneData(title, state, description, due_on)
@@ -294,7 +277,7 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       number: Int,
       headers: Map[String, String]
   ): F[GHResponse[Milestone]] =
-    client.get[Milestone](accessToken, s"repos/$owner/$repo/milestones/$number", headers)
+    client.get[Milestone](s"repos/$owner/$repo/milestones/$number", headers)
 
   override def updateMilestone(
       owner: String,
@@ -307,7 +290,6 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       headers: Map[String, String]
   ): F[GHResponse[Milestone]] =
     client.patch[MilestoneData, Milestone](
-      accessToken,
       s"repos/$owner/$repo/milestones/$milestone_number",
       headers,
       data = MilestoneData(title, state, description, due_on)
@@ -319,5 +301,5 @@ class IssuesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Optio
       milestone_number: Int,
       headers: Map[String, String]
   ): F[GHResponse[Unit]] =
-    client.delete(accessToken, s"repos/$owner/$repo/milestones/$milestone_number", headers)
+    client.delete(s"repos/$owner/$repo/milestones/$milestone_number", headers)
 }

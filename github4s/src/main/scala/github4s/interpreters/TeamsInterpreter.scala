@@ -22,7 +22,7 @@ import github4s.algebras.Teams
 import github4s.domain._
 import github4s.http.HttpClient
 
-class TeamsInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
+class TeamsInterpreter[F[_]](implicit client: HttpClient[F])
     extends Teams[F] {
 
   override def listTeams(
@@ -30,5 +30,5 @@ class TeamsInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option
       pagination: Option[Pagination],
       headers: Map[String, String]
   ): F[GHResponse[List[Team]]] =
-    client.get[List[Team]](accessToken, method = s"orgs/$org/teams", headers, Map.empty, pagination)
+    client.get[List[Team]](method = s"orgs/$org/teams", headers, Map.empty, pagination)
 }

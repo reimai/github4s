@@ -23,6 +23,8 @@ import cats.syntax.either._
 import cats.syntax.functor._
 import github4s.GHError._
 import github4s._
+import github4s.algebras.AccessTokens
+import github4s.algebras.AccessTokens._
 import github4s.domain.Pagination
 import github4s.http.Http4sSyntax._
 import io.circe.{Decoder, Encoder}
@@ -31,73 +33,79 @@ import org.http4s.circe.jsonOf
 import org.http4s.client.Client
 import org.http4s.{EntityDecoder, Request, Response, Status}
 
-class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
+class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig, accessTokens: AccessTokens[F]) {
   import HttpClient._
+  implicit private val access: AccessTokens[F] = accessTokens
 
   def get[Res: Decoder](
-      accessToken: Option[String] = None,
       method: String,
       headers: Map[String, String] = Map.empty,
       params: Map[String, String] = Map.empty,
       pagination: Option[Pagination] = None
   ): F[GHResponse[Res]] =
-    run[Unit, Res](
-      RequestBuilder(url = buildURL(method))
-        .withAuth(accessToken)
-        .withHeaders(headers)
-        .withParams(
-          params ++ pagination.fold(Map.empty[String, String])(p =>
-            Map("page" -> p.page.toString, "per_page" -> p.per_page.toString)
+    withAccessToken { accessToken =>
+      run[Unit, Res](
+        RequestBuilder(url = buildURL(method))
+          .withAuth(accessToken)
+          .withHeaders(headers)
+          .withParams(
+            params ++ pagination.fold(Map.empty[String, String])(p =>
+              Map("page" -> p.page.toString, "per_page" -> p.per_page.toString)
+            )
           )
-        )
-    )
+      )
+    }
 
   def getWithoutResponse(
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map.empty
   ): F[GHResponse[Unit]] =
-    runWithoutResponse[Unit](
-      RequestBuilder(buildURL(url)).withHeaders(headers).withAuth(accessToken)
+    withAccessToken(accessToken =>
+      runWithoutResponse[Unit](
+        RequestBuilder(buildURL(url)).withHeaders(headers).withAuth(accessToken)
+      )
     )
 
   def patch[Req: Encoder, Res: Decoder](
-      accessToken: Option[String] = None,
       method: String,
       headers: Map[String, String] = Map.empty,
       data: Req
   ): F[GHResponse[Res]] =
-    run[Req, Res](
-      RequestBuilder(buildURL(method)).patchMethod
-        .withAuth(accessToken)
-        .withHeaders(headers)
-        .withData(data)
+    withAccessToken(accessToken =>
+      run[Req, Res](
+        RequestBuilder(buildURL(method)).patchMethod
+          .withAuth(accessToken)
+          .withHeaders(headers)
+          .withData(data)
+      )
     )
 
   def put[Req: Encoder, Res: Decoder](
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map(),
       data: Req
   ): F[GHResponse[Res]] =
-    run[Req, Res](
-      RequestBuilder(buildURL(url)).putMethod
-        .withAuth(accessToken)
-        .withHeaders(headers)
-        .withData(data)
+    withAccessToken(accessToken =>
+      run[Req, Res](
+        RequestBuilder(buildURL(url)).putMethod
+          .withAuth(accessToken)
+          .withHeaders(headers)
+          .withData(data)
+      )
     )
 
   def post[Req: Encoder, Res: Decoder](
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map.empty,
       data: Req
   ): F[GHResponse[Res]] =
-    run[Req, Res](
-      RequestBuilder(buildURL(url)).postMethod
-        .withAuth(accessToken)
-        .withHeaders(headers)
-        .withData(data)
+    withAccessToken(accessToken =>
+      run[Req, Res](
+        RequestBuilder(buildURL(url)).postMethod
+          .withAuth(accessToken)
+          .withHeaders(headers)
+          .withData(data)
+      )
     )
 
   def postAuth[Req: Encoder, Res: Decoder](
@@ -119,36 +127,39 @@ class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig) {
     )
 
   def delete(
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map.empty
   ): F[GHResponse[Unit]] =
-    run[Unit, Unit](
-      RequestBuilder(buildURL(url)).deleteMethod.withHeaders(headers).withAuth(accessToken)
+    withAccessToken(accessToken =>
+      run[Unit, Unit](
+        RequestBuilder(buildURL(url)).deleteMethod.withHeaders(headers).withAuth(accessToken)
+      )
     )
 
   def deleteWithResponse[Res: Decoder](
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map.empty
   ): F[GHResponse[Res]] =
-    run[Unit, Res](
-      RequestBuilder(buildURL(url)).deleteMethod
-        .withAuth(accessToken)
-        .withHeaders(headers)
+    withAccessToken(accessToken =>
+      run[Unit, Res](
+        RequestBuilder(buildURL(url)).deleteMethod
+          .withAuth(accessToken)
+          .withHeaders(headers)
+      )
     )
 
   def deleteWithBody[Req: Encoder, Res: Decoder](
-      accessToken: Option[String] = None,
       url: String,
       headers: Map[String, String] = Map.empty,
       data: Req
   ): F[GHResponse[Res]] =
-    run[Req, Res](
-      RequestBuilder(buildURL(url)).deleteMethod
-        .withAuth(accessToken)
-        .withHeaders(headers)
-        .withData(data)
+    withAccessToken(accessToken =>
+      run[Req, Res](
+        RequestBuilder(buildURL(url)).deleteMethod
+          .withAuth(accessToken)
+          .withHeaders(headers)
+          .withData(data)
+      )
     )
 
   private def buildURL(method: String): String = s"${config.baseUrl}$method"

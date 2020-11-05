@@ -28,15 +28,14 @@ import github4s.domain._
 import github4s.http.HttpClient
 
 class RepositoriesInterpreter[F[_]: Functor](implicit
-    client: HttpClient[F],
-    accessToken: Option[String]
+    client: HttpClient[F]
 ) extends Repositories[F] {
   override def get(
       owner: String,
       repo: String,
       headers: Map[String, String]
   ): F[GHResponse[Repository]] =
-    client.get[Repository](accessToken, s"repos/$owner/$repo", headers)
+    client.get[Repository](s"repos/$owner/$repo", headers)
 
   override def listOrgRepos(
       org: String,
@@ -45,7 +44,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Repository]]] =
     client.get[List[Repository]](
-      accessToken,
       s"orgs/$org/repos",
       headers,
       `type`.fold(Map.empty[String, String])(t => Map("type" -> t)),
@@ -59,7 +57,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Repository]]] =
     client.get[List[Repository]](
-      accessToken,
       s"users/$user/repos",
       headers,
       `type`.fold(Map.empty[String, String])(t => Map("type" -> t)),
@@ -75,7 +72,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[NonEmptyList[Content]]] =
     client.get[NonEmptyList[Content]](
-      accessToken,
       s"repos/$owner/$repo/contents/$path",
       headers,
       ref.fold(Map.empty[String, String])(r => Map("ref" -> r)),
@@ -94,7 +90,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[WriteFileResponse]] =
     client.put[WriteFileRequest, WriteFileResponse](
-      accessToken,
       s"repos/$owner/$repo/contents/$path",
       headers,
       WriteFileRequest(message, content.toBase64, None, branch, committer, author)
@@ -113,7 +108,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[WriteFileResponse]] =
     client.put[WriteFileRequest, WriteFileResponse](
-      accessToken,
       s"repos/$owner/$repo/contents/$path",
       headers,
       WriteFileRequest(message, content.toBase64, Some(sha), branch, committer, author)
@@ -131,7 +125,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[WriteFileResponse]] =
     client.deleteWithBody[DeleteFileRequest, WriteFileResponse](
-      accessToken,
       s"repos/$owner/$repo/contents/$path",
       headers,
       DeleteFileRequest(message, sha, branch, committer, author)
@@ -149,7 +142,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Commit]]] =
     client.get[List[Commit]](
-      accessToken,
       s"repos/$owner/$repo/commits",
       headers,
       Map(
@@ -172,7 +164,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Branch]]] =
     client.get[List[Branch]](
-      accessToken,
       s"repos/$owner/$repo/branches",
       headers,
       Map(
@@ -191,7 +182,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[User]]] =
     client.get[List[User]](
-      accessToken,
       s"repos/$owner/$repo/contributors",
       headers,
       Map(
@@ -210,7 +200,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[User]]] =
     client.get[List[User]](
-      accessToken,
       s"repos/$owner/$repo/collaborators",
       headers,
       Map(
@@ -229,7 +218,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
   ): F[GHResponse[Boolean]] =
     client
       .getWithoutResponse(
-        accessToken,
         s"repos/$owner/$repo/collaborators/$username",
         headers
       )
@@ -243,7 +231,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
   ): F[GHResponse[UserRepoPermission]] =
     client
       .get[UserRepoPermission](
-        accessToken,
         s"repos/$owner/$repo/collaborators/$username/permission",
         headers,
         Map.empty
@@ -255,7 +242,7 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[Option[Release]]] =
     client
-      .get[Option[Release]](accessToken, s"repos/$owner/$repo/releases/latest", headers, Map.empty)
+      .get[Option[Release]](s"repos/$owner/$repo/releases/latest", headers, Map.empty)
 
   override def getRelease(
       releaseId: Long,
@@ -265,7 +252,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
   ): F[GHResponse[Option[Release]]] =
     client
       .get[Option[Release]](
-        accessToken,
         s"repos/$owner/$repo/releases/$releaseId",
         headers,
         Map.empty
@@ -278,7 +264,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Release]]] =
     client.get[List[Release]](
-      accessToken,
       s"repos/$owner/$repo/releases",
       headers,
       Map.empty,
@@ -297,7 +282,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[Release]] =
     client.post[NewReleaseRequest, Release](
-      accessToken,
       s"repos/$owner/$repo/releases",
       headers,
       NewReleaseRequest(tagName, name, body, targetCommitish, draft, prerelease)
@@ -309,7 +293,7 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       ref: String,
       headers: Map[String, String]
   ): F[GHResponse[CombinedStatus]] =
-    client.get[CombinedStatus](accessToken, s"repos/$owner/$repo/commits/$ref/status", headers)
+    client.get[CombinedStatus](s"repos/$owner/$repo/commits/$ref/status", headers)
 
   override def listStatuses(
       owner: String,
@@ -319,7 +303,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[List[Status]]] =
     client.get[List[Status]](
-      accessToken,
       s"repos/$owner/$repo/commits/$ref/statuses",
       headers,
       pagination = pagination
@@ -336,7 +319,6 @@ class RepositoriesInterpreter[F[_]: Functor](implicit
       headers: Map[String, String]
   ): F[GHResponse[Status]] =
     client.post[NewStatusRequest, Status](
-      accessToken,
       s"repos/$owner/$repo/statuses/$sha",
       headers,
       NewStatusRequest(state, target_url, description, context)

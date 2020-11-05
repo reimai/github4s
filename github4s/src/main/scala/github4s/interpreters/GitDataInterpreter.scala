@@ -16,16 +16,15 @@
 
 package github4s.interpreters
 
-import github4s.http.HttpClient
-import github4s.algebras.GitData
 import cats.data.NonEmptyList
-import github4s.GHResponse
-import github4s.domain._
 import github4s.Decoders._
 import github4s.Encoders._
+import github4s.GHResponse
+import github4s.algebras.GitData
+import github4s.domain._
+import github4s.http.HttpClient
 
-class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
-    extends GitData[F] {
+class GitDataInterpreter[F[_]](implicit client: HttpClient[F]) extends GitData[F] {
   override def getReference(
       owner: String,
       repo: String,
@@ -34,7 +33,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[NonEmptyList[Ref]]] =
     client.get[NonEmptyList[Ref]](
-      accessToken,
       s"repos/$owner/$repo/git/refs/$ref",
       headers,
       pagination = pagination
@@ -48,7 +46,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[Ref]] =
     client.post[CreateReferenceRequest, Ref](
-      accessToken,
       s"repos/$owner/$repo/git/refs",
       headers,
       CreateReferenceRequest(ref, sha)
@@ -63,7 +60,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[Ref]] =
     client.patch[UpdateReferenceRequest, Ref](
-      accessToken,
       s"repos/$owner/$repo/git/refs/$ref",
       headers,
       UpdateReferenceRequest(sha, force)
@@ -75,7 +71,7 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       sha: String,
       headers: Map[String, String]
   ): F[GHResponse[RefCommit]] =
-    client.get[RefCommit](accessToken, s"repos/$owner/$repo/git/commits/$sha", headers)
+    client.get[RefCommit](s"repos/$owner/$repo/git/commits/$sha", headers)
 
   override def createCommit(
       owner: String,
@@ -87,7 +83,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[RefCommit]] =
     client.post[NewCommitRequest, RefCommit](
-      accessToken,
       s"repos/$owner/$repo/git/commits",
       headers,
       NewCommitRequest(message, tree, parents, author)
@@ -99,7 +94,7 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       fileSha: String,
       headers: Map[String, String]
   ): F[GHResponse[BlobContent]] =
-    client.get[BlobContent](accessToken, s"repos/$owner/$repo/git/blobs/$fileSha", headers)
+    client.get[BlobContent](s"repos/$owner/$repo/git/blobs/$fileSha", headers)
 
   override def createBlob(
       owner: String,
@@ -109,7 +104,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[RefInfo]] =
     client.post[NewBlobRequest, RefInfo](
-      accessToken,
       s"repos/$owner/$repo/git/blobs",
       headers,
       NewBlobRequest(content, encoding)
@@ -123,7 +117,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[TreeResult]] =
     client.get[TreeResult](
-      accessToken,
       s"repos/$owner/$repo/git/trees/$sha",
       headers,
       (if (recursive) Map("recursive" -> "1") else Map.empty)
@@ -137,7 +130,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[TreeResult]] =
     client.post[NewTreeRequest, TreeResult](
-      accessToken,
       s"repos/$owner/$repo/git/trees",
       headers,
       NewTreeRequest(treeDataList, baseTree)
@@ -154,7 +146,6 @@ class GitDataInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Opti
       headers: Map[String, String]
   ): F[GHResponse[Tag]] =
     client.post[NewTagRequest, Tag](
-      accessToken,
       s"repos/$owner/$repo/git/tags",
       headers,
       NewTagRequest(tag, message, objectSha, objectType, author)
