@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class OrganizationsSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Organization.listMembers" should "call to httpClient.get with the right parameters" in {
 
     val response: IO[GHResponse[List[User]]] =

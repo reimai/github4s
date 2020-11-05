@@ -17,8 +17,10 @@
 package github4s.utils
 
 import cats.effect.IO
+import github4s.algebras.AccessTokens
 import github4s.domain.Pagination
 import github4s.http.HttpClient
+import github4s.interpreters.AccessTokensImpl
 import github4s.{GHResponse, GithubConfig}
 import io.circe.{Decoder, Encoder}
 import org.http4s.client.Client
@@ -38,7 +40,7 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   )
 
   @com.github.ghik.silencer.silent("deprecated")
-  class HttpClientTest extends HttpClient[IO](mock[Client[IO]], implicitly)
+  class HttpClientTest extends HttpClient[IO](mock[Client[IO]], implicitly, new AccessTokensImpl(sampleToken))
 
   def httpClientMockGet[Out](
       url: String,
@@ -49,13 +51,12 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
       .get[Out](
-        _: Option[String],
         _: String,
         _: Map[String, String],
         _: Map[String, String],
         _: Option[Pagination]
       )(_: Decoder[Out]))
-      .expects(sampleToken, url, headers ++ headerUserAgent, params, *, *)
+      .expects(url, headers ++ headerUserAgent, params, *, *)
       .returns(response)
     httpClientMock
   }
@@ -66,8 +67,8 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .getWithoutResponse(_: Option[String], _: String, _: Map[String, String]))
-      .expects(sampleToken, url, headerUserAgent)
+      .getWithoutResponse(_: String, _: Map[String, String]))
+      .expects(url, headerUserAgent)
       .returns(response)
     httpClientMock
   }
@@ -79,11 +80,11 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .post[In, Out](_: Option[String], _: String, _: Map[String, String], _: In)(
+      .post[In, Out](_: String, _: Map[String, String], _: In)(
         _: Encoder[In],
         _: Decoder[Out]
       ))
-      .expects(sampleToken, url, headerUserAgent, req, *, *)
+      .expects(url, headerUserAgent, req, *, *)
       .returns(response)
     httpClientMock
   }
@@ -126,11 +127,11 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .patch[In, Out](_: Option[String], _: String, _: Map[String, String], _: In)(
+      .patch[In, Out](_: String, _: Map[String, String], _: In)(
         _: Encoder[In],
         _: Decoder[Out]
       ))
-      .expects(sampleToken, url, headerUserAgent, req, *, *)
+      .expects(url, headerUserAgent, req, *, *)
       .returns(response)
     httpClientMock
   }
@@ -142,11 +143,11 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .put[In, Out](_: Option[String], _: String, _: Map[String, String], _: In)(
+      .put[In, Out](_: String, _: Map[String, String], _: In)(
         _: Encoder[In],
         _: Decoder[Out]
       ))
-      .expects(sampleToken, url, headerUserAgent, req, *, *)
+      .expects(url, headerUserAgent, req, *, *)
       .returns(response)
     httpClientMock
   }
@@ -154,8 +155,8 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   def httpClientMockDelete(url: String, response: IO[GHResponse[Unit]]): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .delete(_: Option[String], _: String, _: Map[String, String]))
-      .expects(sampleToken, url, headerUserAgent)
+      .delete(_: String, _: Map[String, String]))
+      .expects(url, headerUserAgent)
       .returns(response)
     httpClientMock
   }
@@ -166,10 +167,10 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .deleteWithResponse[Out](_: Option[String], _: String, _: Map[String, String])(
+      .deleteWithResponse[Out](_: String, _: Map[String, String])(
         _: Decoder[Out]
       ))
-      .expects(sampleToken, url, headerUserAgent, *)
+      .expects(url, headerUserAgent, *)
       .returns(response)
     httpClientMock
   }
@@ -181,11 +182,11 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   ): HttpClient[IO] = {
     val httpClientMock = mock[HttpClientTest]
     (httpClientMock
-      .deleteWithBody[In, Out](_: Option[String], _: String, _: Map[String, String], _: In)(
+      .deleteWithBody[In, Out](_: String, _: Map[String, String], _: In)(
         _: Encoder[In],
         _: Decoder[Out]
       ))
-      .expects(sampleToken, url, headerUserAgent, req, *, *)
+      .expects(url, headerUserAgent, req, *, *)
       .returns(response)
     httpClientMock
   }

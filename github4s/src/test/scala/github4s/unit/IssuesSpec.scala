@@ -28,8 +28,6 @@ import github4s.utils.BaseSpec
 
 class IssuesSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Issues.listIssues" should "call httpClient.get with the right parameters" in {
     val response: IO[GHResponse[List[Issue]]] =
       IO(GHResponse(List(issue).asRight, okStatusCode, Map.empty))

@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class ActivitiesSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Activity.setThreadSub" should "call to httpClient.put with the right parameters" in {
 
     val response: IO[GHResponse[Subscription]] =

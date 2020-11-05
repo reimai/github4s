@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class PullRequestsSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "PullRequests.get" should "call to httpClient.get with the right parameters" in {
 
     val response: IO[GHResponse[PullRequest]] =

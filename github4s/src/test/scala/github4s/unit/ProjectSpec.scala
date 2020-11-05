@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class ProjectSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Project.listProjects" should "call to httpClient.get with the right parameters" in {
 
     val response: IO[GHResponse[List[Project]]] =

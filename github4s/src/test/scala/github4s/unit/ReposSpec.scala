@@ -27,8 +27,6 @@ import github4s.utils.BaseSpec
 
 class ReposSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Repos.get" should "call to httpClient.get with the right parameters" in {
     val response: IO[GHResponse[Repository]] =
       IO(GHResponse(repo.asRight, okStatusCode, Map.empty))
