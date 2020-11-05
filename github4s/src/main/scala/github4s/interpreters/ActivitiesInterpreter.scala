@@ -23,8 +23,7 @@ import github4s.Encoders._
 import github4s.GHResponse
 import github4s.http.HttpClient
 
-class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F])
-    extends Activities[F] {
+class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F]) extends Activities[F] {
 
   private val timelineHeader = ("Accept" -> "application/vnd.github.v3.star+json")
 

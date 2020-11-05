@@ -33,7 +33,11 @@ import org.http4s.circe.jsonOf
 import org.http4s.client.Client
 import org.http4s.{EntityDecoder, Request, Response, Status}
 
-class HttpClient[F[_]: Sync](client: Client[F], val config: GithubConfig, accessTokens: AccessTokens[F]) {
+class HttpClient[F[_]: Sync](
+    client: Client[F],
+    val config: GithubConfig,
+    accessTokens: AccessTokens[F]
+) {
   import HttpClient._
   implicit private val access: AccessTokens[F] = accessTokens
 

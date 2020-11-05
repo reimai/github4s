@@ -22,8 +22,7 @@ import github4s.GHResponse
 import github4s.domain._
 import github4s.Decoders._
 
-class UsersInterpreter[F[_]](implicit client: HttpClient[F])
-    extends Users[F] {
+class UsersInterpreter[F[_]](implicit client: HttpClient[F]) extends Users[F] {
 
   override def get(username: String, headers: Map[String, String]): F[GHResponse[User]] =
     client.get[User](s"users/$username", headers)

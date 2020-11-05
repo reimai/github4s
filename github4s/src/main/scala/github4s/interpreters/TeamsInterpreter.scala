@@ -22,8 +22,7 @@ import github4s.algebras.Teams
 import github4s.domain._
 import github4s.http.HttpClient
 
-class TeamsInterpreter[F[_]](implicit client: HttpClient[F])
-    extends Teams[F] {
+class TeamsInterpreter[F[_]](implicit client: HttpClient[F]) extends Teams[F] {
 
   override def listTeams(
       org: String,
