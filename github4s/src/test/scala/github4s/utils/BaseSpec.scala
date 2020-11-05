@@ -40,7 +40,8 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
   )
 
   @com.github.ghik.silencer.silent("deprecated")
-  class HttpClientTest extends HttpClient[IO](mock[Client[IO]], implicitly, new AccessTokensImpl(sampleToken))
+  class HttpClientTest
+      extends HttpClient[IO](mock[Client[IO]], implicitly, new AccessTokensImpl(sampleToken))
 
   def httpClientMockGet[Out](
       url: String,
