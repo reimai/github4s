@@ -18,7 +18,7 @@ package github4s
 
 import cats.effect.Sync
 import github4s.algebras._
-import github4s.interpreters.AccessTokensImpl
+import github4s.interpreters.StaticAccessTokens
 import github4s.modules._
 import org.http4s.client.Client
 
@@ -49,5 +49,5 @@ object Github {
       client: Client[F],
       accessToken: Option[String] = None
   )(implicit config: GithubConfig): Github[F] =
-    new Github[F](client, new AccessTokensImpl(accessToken))
+    new Github[F](client, new StaticAccessTokens(accessToken))
 }

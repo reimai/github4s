@@ -39,7 +39,7 @@ class HttpClient[F[_]: Sync](
     accessTokens: AccessTokens[F]
 ) {
   import HttpClient._
-  implicit private val access: AccessTokens[F] = accessTokens
+  import accessTokens._
 
   def get[Res: Decoder](
       method: String,
