@@ -24,7 +24,6 @@ import cats.syntax.functor._
 import github4s.GHError._
 import github4s._
 import github4s.algebras.AccessTokens
-import github4s.algebras.AccessTokens._
 import github4s.domain.Pagination
 import github4s.http.Http4sSyntax._
 import io.circe.{Decoder, Encoder}
