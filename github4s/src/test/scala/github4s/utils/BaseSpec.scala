@@ -17,6 +17,7 @@
 package github4s.utils
 
 import cats.effect.IO
+import github4s.algebras.AccessTokens
 import github4s.domain.Pagination
 import github4s.http.HttpClient
 import github4s.interpreters.AccessTokensImpl
