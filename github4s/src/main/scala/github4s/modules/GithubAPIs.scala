@@ -26,7 +26,7 @@ import org.http4s.client.Client
 class GithubAPIv3[F[_]: Sync](
     client: Client[F],
     config: GithubConfig,
-    accessToken: AccessTokens[F]
+    accessToken: AccessToken[F]
 ) extends GithubAPIs[F] {
 
   implicit val httpClient = new HttpClient[F](client, config, accessToken)
@@ -48,5 +48,5 @@ class GithubAPIv3[F[_]: Sync](
 object GithubAPIv3 {
 
   def noAuth[F[_]: Sync](client: Client[F], config: GithubConfig) =
-    new GithubAPIv3[F](client, config, StaticAccessTokens.noToken)
+    new GithubAPIv3[F](client, config, StaticAccessToken.noToken)
 }

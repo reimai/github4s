@@ -19,7 +19,7 @@ package github4s.utils
 import cats.effect.IO
 import github4s.domain.Pagination
 import github4s.http.HttpClient
-import github4s.interpreters.StaticAccessTokens
+import github4s.interpreters.StaticAccessToken
 import github4s.{GHResponse, GithubConfig}
 import io.circe.{Decoder, Encoder}
 import org.http4s.client.Client
@@ -40,7 +40,7 @@ trait BaseSpec extends AnyFlatSpec with Matchers with TestData with MockFactory 
 
   @com.github.ghik.silencer.silent("deprecated")
   class HttpClientTest
-      extends HttpClient[IO](mock[Client[IO]], implicitly, new StaticAccessTokens(sampleToken))
+      extends HttpClient[IO](mock[Client[IO]], implicitly, new StaticAccessToken(sampleToken))
 
   def httpClientMockGet[Out](
       url: String,

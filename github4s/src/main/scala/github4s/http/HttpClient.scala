@@ -23,7 +23,7 @@ import cats.syntax.either._
 import cats.syntax.functor._
 import github4s.GHError._
 import github4s._
-import github4s.algebras.AccessTokens
+import github4s.algebras.AccessToken
 import github4s.domain.Pagination
 import github4s.http.Http4sSyntax._
 import io.circe.{Decoder, Encoder}
@@ -35,7 +35,7 @@ import org.http4s.{EntityDecoder, Request, Response, Status}
 class HttpClient[F[_]: Sync](
     client: Client[F],
     val config: GithubConfig,
-    accessTokens: AccessTokens[F]
+    accessTokens: AccessToken[F]
 ) {
   import HttpClient._
   import accessTokens._

@@ -10,6 +10,8 @@ permalink: docs
 
 In order to access the Github API, you will need to have [an access token][access-token] with the
 appropriate scopes (i.e. if you want to create gists, your token will need to have the gist scope).
+A personal token lives forever, github app's one has to be re-issued every hour. 
+Implementation of [github app][github_app] authentication involves 3rd party libraries like jwt and is left for the user. 
 
 ## Github4s
 
@@ -240,6 +242,7 @@ headers which will be added to every request sent to the GitHub API. The user ag
 added by default.
 
 [access-token]: https://github.com/settings/tokens
+[github_app]: https://github.com/settings/apps
 [cats-sync]: https://typelevel.org/cats-effect/typeclasses/sync.html
 [monix-task]: https://monix.io/docs/3x/eval/task.html
 [http4s-client]: https://http4s.org/v0.21/client/
