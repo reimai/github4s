@@ -47,6 +47,6 @@ class GithubAPIv3[F[_]: Sync](
 
 object GithubAPIv3 {
 
-  def noAuth[F[_]: Sync](client: Client[F], config: GithubConfig) =
+  def noAuth[F[_]: Sync](client: Client[F], config: GithubConfig): GithubAPIv3[F] =
     new GithubAPIv3[F](client, config, StaticAccessToken.noToken)
 }
