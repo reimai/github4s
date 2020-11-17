@@ -26,11 +26,10 @@ import org.http4s.client.Client
 class GithubAPIv3[F[_]: Sync](
     client: Client[F],
     config: GithubConfig,
-    accessToken: Option[String] = None
+    accessToken: AccessToken[F]
 ) extends GithubAPIs[F] {
 
-  implicit val httpClient = new HttpClient[F](client, config)
-  implicit val at         = accessToken
+  implicit val httpClient = new HttpClient[F](client, config, accessToken)
 
   override val users: Users[F]                 = new UsersInterpreter[F]
   override val repos: Repositories[F]          = new RepositoriesInterpreter[F]
@@ -44,4 +43,10 @@ class GithubAPIv3[F[_]: Sync](
   override val teams: Teams[F]                 = new TeamsInterpreter[F]
   override val projects: Projects[F]           = new ProjectsInterpreter[F]
 
+}
+
+object GithubAPIv3 {
+
+  def noAuth[F[_]: Sync](client: Client[F], config: GithubConfig): GithubAPIv3[F] =
+    new GithubAPIv3[F](client, config, StaticAccessToken.noToken)
 }

@@ -26,8 +26,6 @@ import github4s.utils.BaseSpec
 
 class GitDataSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "GitData.getReference" should "call to httpClient.get with the right parameters" in {
 
     val response: IO[GHResponse[NonEmptyList[Ref]]] =

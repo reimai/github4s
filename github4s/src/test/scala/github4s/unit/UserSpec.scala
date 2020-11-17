@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class UserSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "UsersInterpreter.get" should "call to httpClient.get with the right parameters" in {
     val response: IO[GHResponse[User]] =
       IO(GHResponse(user.asRight, okStatusCode, Map.empty))

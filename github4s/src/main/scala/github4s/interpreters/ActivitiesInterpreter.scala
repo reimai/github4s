@@ -23,8 +23,7 @@ import github4s.Encoders._
 import github4s.GHResponse
 import github4s.http.HttpClient
 
-class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
-    extends Activities[F] {
+class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F]) extends Activities[F] {
 
   private val timelineHeader = ("Accept" -> "application/vnd.github.v3.star+json")
 
@@ -35,7 +34,6 @@ class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: O
       headers: Map[String, String]
   ): F[GHResponse[Subscription]] =
     client.put[SubscriptionRequest, Subscription](
-      accessToken = accessToken,
       url = s"notifications/threads/$id/subscription",
       headers = headers,
       data = SubscriptionRequest(subscribed, ignored)
@@ -49,7 +47,6 @@ class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: O
       headers: Map[String, String]
   ): F[GHResponse[List[Stargazer]]] =
     client.get[List[Stargazer]](
-      accessToken,
       s"repos/$owner/$repo/stargazers",
       if (timeline) headers + timelineHeader else headers,
       pagination = pagination
@@ -64,7 +61,6 @@ class ActivitiesInterpreter[F[_]](implicit client: HttpClient[F], accessToken: O
       headers: Map[String, String]
   ): F[GHResponse[List[StarredRepository]]] =
     client.get[List[StarredRepository]](
-      accessToken,
       s"users/$username/starred",
       if (timeline) headers + timelineHeader else headers,
       Map(

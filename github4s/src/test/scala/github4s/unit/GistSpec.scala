@@ -25,8 +25,6 @@ import github4s.utils.BaseSpec
 
 class GistSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Gist.newGist" should "call to httpClient.post with the right parameters" in {
 
     val response: IO[GHResponse[Gist]] =

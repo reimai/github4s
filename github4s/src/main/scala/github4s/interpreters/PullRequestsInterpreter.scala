@@ -16,15 +16,14 @@
 
 package github4s.interpreters
 
-import github4s.http.HttpClient
-import github4s.algebras.PullRequests
-import github4s.GHResponse
-import github4s.domain._
 import github4s.Decoders._
 import github4s.Encoders._
+import github4s.GHResponse
+import github4s.algebras.PullRequests
+import github4s.domain._
+import github4s.http.HttpClient
 
-class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken: Option[String])
-    extends PullRequests[F] {
+class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F]) extends PullRequests[F] {
 
   override def getPullRequest(
       owner: String,
@@ -32,7 +31,7 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       number: Int,
       headers: Map[String, String]
   ): F[GHResponse[PullRequest]] =
-    client.get[PullRequest](accessToken, s"repos/$owner/$repo/pulls/$number", headers)
+    client.get[PullRequest](s"repos/$owner/$repo/pulls/$number", headers)
 
   override def listPullRequests(
       owner: String,
@@ -42,7 +41,6 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       headers: Map[String, String]
   ): F[GHResponse[List[PullRequest]]] =
     client.get[List[PullRequest]](
-      accessToken,
       s"repos/$owner/$repo/pulls",
       headers,
       filters.map(_.tupled).toMap,
@@ -58,7 +56,6 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
   ): F[GHResponse[List[PullRequestFile]]] =
     client
       .get[List[PullRequestFile]](
-        accessToken,
         s"repos/$owner/$repo/pulls/$number/files",
         headers,
         Map.empty,
@@ -81,7 +78,7 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
         CreatePullRequestIssue(issue, head, base, maintainerCanModify)
     }
     client
-      .post[CreatePullRequest, PullRequest](accessToken, s"repos/$owner/$repo/pulls", headers, data)
+      .post[CreatePullRequest, PullRequest](s"repos/$owner/$repo/pulls", headers, data)
   }
 
   override def listReviews(
@@ -92,7 +89,6 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       headers: Map[String, String]
   ): F[GHResponse[List[PullRequestReview]]] =
     client.get[List[PullRequestReview]](
-      accessToken,
       s"repos/$owner/$repo/pulls/$pullRequest/reviews",
       headers,
       Map.empty,
@@ -107,7 +103,6 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
       headers: Map[String, String]
   ): F[GHResponse[PullRequestReview]] =
     client.get[PullRequestReview](
-      accessToken,
       s"repos/$owner/$repo/pulls/$pullRequest/reviews/$review",
       headers
     )
@@ -121,7 +116,6 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F], accessToken:
   ): F[GHResponse[PullRequestReview]] =
     client
       .post[CreatePRReviewRequest, PullRequestReview](
-        accessToken,
         s"repos/$owner/$repo/pulls/$pullRequest/reviews",
         headers,
         createPRReviewRequest
