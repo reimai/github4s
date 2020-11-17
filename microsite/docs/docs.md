@@ -11,6 +11,10 @@ permalink: docs
 In order to access the Github API, you will need to have [an access token][access-token] with the
 appropriate scopes (i.e. if you want to create gists, your token will need to have the gist scope).
 
+A personal token can be valid forever. However, the ones issued for [Github Apps][github-app] have to be re-issued every hour. 
+To solve that issue, github4s provides [AccessToken][access-token-scala] which you can hook into to provide authentication for your app using third-party libraries such as JWT implementations, for example.
+You can find the default implementation for static tokens in [StaticAccessToken][static-access-token-scala].
+
 ## Github4s
 
 Github4s uses [Tagless Final encoding](https://typelevel.org/blog/2017/12/27/optimizing-final-tagless.html).
@@ -240,6 +244,9 @@ headers which will be added to every request sent to the GitHub API. The user ag
 added by default.
 
 [access-token]: https://github.com/settings/tokens
+[github-app]: https://github.com/settings/apps
+[access-token-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/algebras/AccessToken.scala
+[access-token-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/interpreters/StaticAccessToken.scala
 [cats-sync]: https://typelevel.org/cats-effect/typeclasses/sync.html
 [monix-task]: https://monix.io/docs/3x/eval/task.html
 [http4s-client]: https://http4s.org/v0.21/client/

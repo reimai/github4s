@@ -14,29 +14,20 @@
  * limitations under the License.
  */
 
-package github4s.unit
+package github4s.interpreters
 
-import cats.effect.IO
-import cats.syntax.either._
 import github4s.GHResponse
-import github4s.domain._
-import github4s.interpreters.TeamsInterpreter
-import github4s.utils.BaseSpec
+import github4s.algebras.AccessToken
 
-class TeamsSpec extends BaseSpec {
+/**
+ * A simple static version
+ */
+class StaticAccessToken[F[_]](accessToken: Option[String]) extends AccessToken[F] {
 
-  "Teams.listTeam" should "call to httpClient.get with the right parameters" in {
-    val response: IO[GHResponse[List[Team]]] =
-      IO(GHResponse(List(team).asRight, okStatusCode, Map.empty))
+  override def withAccessToken[T](f: Option[String] => F[GHResponse[T]]): F[GHResponse[T]] =
+    f(accessToken)
+}
 
-    implicit val httpClientMock = httpClientMockGet[List[Team]](
-      url = s"orgs/$validRepoOwner/teams",
-      response = response
-    )
-
-    val teams = new TeamsInterpreter[IO]
-
-    teams.listTeams(validRepoOwner, headers = headerUserAgent)
-  }
-
+object StaticAccessToken {
+  def noToken[F[_]] = new StaticAccessToken[F](None)
 }

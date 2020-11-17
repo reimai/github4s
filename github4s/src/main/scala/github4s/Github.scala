@@ -18,12 +18,13 @@ package github4s
 
 import cats.effect.Sync
 import github4s.algebras._
+import github4s.interpreters.StaticAccessToken
 import github4s.modules._
 import org.http4s.client.Client
 
 class Github[F[_]: Sync](
     client: Client[F],
-    accessToken: Option[String]
+    accessToken: AccessToken[F]
 )(implicit config: GithubConfig)
     extends GithubAPIs[F] {
 
@@ -48,5 +49,5 @@ object Github {
       client: Client[F],
       accessToken: Option[String] = None
   )(implicit config: GithubConfig): Github[F] =
-    new Github[F](client, accessToken)
+    new Github[F](client, new StaticAccessToken(accessToken))
 }

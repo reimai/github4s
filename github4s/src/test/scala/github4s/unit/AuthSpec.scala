@@ -26,8 +26,6 @@ import github4s.interpreters.AuthInterpreter
 
 class AuthSpec extends BaseSpec {
 
-  implicit val token = sampleToken
-
   "Auth.newAuth" should "call to httpClient.postAuth with the right parameters" in {
 
     val response: IO[GHResponse[Authorization]] =
