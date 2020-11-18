@@ -17,10 +17,10 @@ object ProjectPlugin extends AutoPlugin {
       val base64: String    = "0.2.10"
       val cats: String      = "2.2.0"
       val circe: String     = "0.13.0"
-      val http4s: String    = "0.21.8"
+      val http4s: String    = "0.21.9"
       val paradise: String  = "2.1.1"
       val scalamock: String = "5.0.0"
-      val scalatest: String = "3.2.2"
+      val scalatest: String = "3.2.3"
       val silencer: String  = "1.7.1"
     }
 
