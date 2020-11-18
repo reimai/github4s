@@ -18,6 +18,10 @@ with Github4s, you can interact with:
   - [List reviews](#list-pull-request-reviews)
   - [Get a review](#get-an-individual-review)
   - [Create a review](#create-a-review)
+- [Review requests](#review-requests)
+  - [Add reviewers](#add-reviewers)
+  - [List reviewers](#list-reviewers)
+  - [Remove reviewers](#remove-reviewers)
 
 The following examples assume the following code:
 
@@ -251,7 +255,95 @@ The `result` on the right is the created [PullRequestReview][pr-scala].
 
 See [the API doc](https://developer.github.com/v3/pulls/reviews/#create-a-review-for-a-pull-request) for full reference.
 
+## Review requests
+
+This API allows you to operate review requests. Reviewers could be both users and teams. Usernames should be used without a leading '@' sign.
+**NOTE**: There might be problems with team reviewers and Github App authentication. 
+
+### Add reviewers
+
+You can add reviewers for a pull request using `addReviewers`; it takes as arguments:
+
+- the repository coordinates (`owner` and `name` of the repository).
+- the pull request id.
+- users and teams you want to add as reviewers
+
+As an example, if we wanted to add `torvalds` to the reviewers for pull request 139 of `47degrees/github4s`:
+
+```scala mdoc:compile-only
+val listReviews = gh.pullRequests.addReviewers(
+  "47deg",
+  "github4s",
+  139,
+  RequestedReviewersRequest(List("torvalds")))
+val response = listReviews.unsafeRunSync()
+response.result match {
+  case Left(e) => println(s"Something went wrong: ${e.getMessage}")
+  case Right(r) => println(r)
+}
+```
+
+The `result` on the right is the updated [PullRequest][pr-scala]. 
+
+**NOTE**: you can't request a review from the pr's author. If your list of added reviewers contains the author, the whole request will be declined. 
+
+See [the API doc](https://docs.github.com/en/free-pro-team@latest/rest/reference/pulls#request-reviewers-for-a-pull-request) for full reference.
+
+### List reviewers
+
+You can list the reviewers for a pull request using `listReviewers`; it takes as arguments:
+
+- the repository coordinates (`owner` and `name` of the repository).
+- the pull request id.
+
+As an example, if we wanted to see all the reviewers for pull request 139 of `47degrees/github4s`:
+
+```scala mdoc:compile-only
+val listReviews = gh.pullRequests.listReviewers(
+  "47deg",
+  "github4s",
+  139)
+val response = listReviews.unsafeRunSync()
+response.result match {
+  case Left(e) => println(s"Something went wrong: ${e.getMessage}")
+  case Right(r) => println(r)
+}
+```
+
+The `result` on the right is the matching [RequestedReviewersResponse][rr-scala], which contains all users and teams, whose review has been requested. 
+
+See [the API doc](https://docs.github.com/en/free-pro-team@latest/rest/reference/pulls#list-requested-reviewers-for-a-pull-request) for full reference.
+
+### Remove reviewers
+
+You can remove reviewers from a pull request using `removeReviewers`; it takes as arguments:
+
+- the repository coordinates (`owner` and `name` of the repository).
+- the pull request id.
+- users and teams you want to remove from reviewers
+
+As an example, if we wanted to remove `torvalds` from the reviewers for pull request 139 of `47degrees/github4s`:
+
+```scala mdoc:compile-only
+val listReviews = gh.pullRequests.addReviewers(
+  "47deg",
+  "github4s",
+  139,
+  RequestedReviewersRequest(List("torvalds")))
+val response = listReviews.unsafeRunSync()
+response.result match {
+  case Left(e) => println(s"Something went wrong: ${e.getMessage}")
+  case Right(r) => println(r)
+}
+```
+
+The `result` on the right is the updated [PullRequest][pr-scala]. 
+
+See [the API doc](https://docs.github.com/en/free-pro-team@latest/rest/reference/pulls#remove-requested-reviewers-from-a-pull-request) for full reference.
+
+
 As you can see, a few features of the pull request endpoint are missing. As a result, if you'd like
 to see a feature supported, feel free to create an issue and/or a pull request!
 
 [pr-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala
+[rr-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/RequestedReviewersResponse.scala
