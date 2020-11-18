@@ -295,4 +295,65 @@ trait PullRequestsSpec extends BaseIntegrationSpec {
     testIsLeft[JsonParsingError, PullRequestReview](response)
     response.statusCode shouldBe unprocessableEntityStatusCode
   }
+
+  "PullRequests >> AddReviewers" should "request review from reviewers" taggedAs Integration in {
+    val addReviewersResponse = clientResource
+      .use { client =>
+        Github[IO](client, accessToken).pullRequests
+          .addReviewers(
+            validRepoOwner,
+            validRepoName,
+            validPullRequestNumber,
+            validReviewers,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsRight[PullRequest](
+      addReviewersResponse,
+      r => r.body shouldBe validCreatePRReviewRequest.body
+    )
+    addReviewersResponse.statusCode shouldBe okStatusCode
+
+    val getReviewersResponse = clientResource
+      .use { client =>
+        Github[IO](client, accessToken).pullRequests
+          .listReviewers(
+            validRepoOwner,
+            validRepoName,
+            validPullRequestNumber,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsRight[RequestedReviewersResponse](
+      getReviewersResponse,
+      r => {
+        r.users.map(_.login) shouldBe List(validUsername)
+        r.teams.map(_.slug) shouldBe List(validSlug)
+      }
+    )
+    getReviewersResponse.statusCode shouldBe okStatusCode
+
+    val removeReviewersResponse = clientResource
+      .use { client =>
+        Github[IO](client, accessToken).pullRequests
+          .removeReviewers(
+            validRepoOwner,
+            validRepoName,
+            validPullRequestNumber,
+            validReviewers,
+            headers = headerUserAgent
+          )
+      }
+      .unsafeRunSync()
+
+    testIsRight[PullRequest](
+      addReviewersResponse,
+      r => r.body shouldBe validCreatePRReviewRequest.body
+    )
+    removeReviewersResponse.statusCode shouldBe okStatusCode
+  }
 }

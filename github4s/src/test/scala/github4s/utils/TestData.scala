@@ -599,4 +599,6 @@ trait TestData {
     closed_at = None
   )
 
+  val validReviewers: RequestedReviewersRequest =
+    RequestedReviewersRequest(List(validUsername), List(validSlug))
 }
