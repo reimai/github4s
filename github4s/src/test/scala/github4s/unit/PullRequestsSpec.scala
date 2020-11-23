@@ -200,7 +200,8 @@ class PullRequestsSpec extends BaseSpec {
       IO(GHResponse(pullRequestReview.asRight, okStatusCode, Map.empty))
 
     implicit val httpClientMock = httpClientMockPost[RequestedReviewersRequest, PullRequestReview](
-      url = s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
+      url =
+        s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
       req = validRequestedReviewersRequest,
       response = response
     )
@@ -220,11 +221,13 @@ class PullRequestsSpec extends BaseSpec {
     val response: IO[GHResponse[PullRequestReview]] =
       IO(GHResponse(pullRequestReview.asRight, okStatusCode, Map.empty))
 
-    implicit val httpClientMock = httpClientMockDeleteWithBody[RequestedReviewersRequest, PullRequestReview](
-      url = s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
-      req = validRequestedReviewersRequest,
-      response = response
-    )
+    implicit val httpClientMock =
+      httpClientMockDeleteWithBody[RequestedReviewersRequest, PullRequestReview](
+        url =
+          s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
+        req = validRequestedReviewersRequest,
+        response = response
+      )
 
     val pullRequests = new PullRequestsInterpreter[IO]
 
@@ -242,7 +245,8 @@ class PullRequestsSpec extends BaseSpec {
       IO(GHResponse(validRequestedReviewersResponse.asRight, okStatusCode, Map.empty))
 
     implicit val httpClientMock = httpClientMockGet[RequestedReviewersResponse](
-      url = s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
+      url =
+        s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
       response = response
     )
 
