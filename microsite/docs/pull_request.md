@@ -277,7 +277,7 @@ val addReviewers = gh.pullRequests.addReviewers(
   "github4s",
   139,
   RequestedReviewersRequest(List("torvalds")))
-val response = reviewers.unsafeRunSync()
+val response = addReviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
   case Right(r) => println(r)
