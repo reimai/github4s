@@ -474,6 +474,12 @@ trait TestData {
     parent = null
   )
 
+  val validRequestedReviewersRequest =
+    RequestedReviewersRequest(List(user.login), List(validSlug))
+
+  val validRequestedReviewersResponse =
+    RequestedReviewersResponse(List(user), List(team))
+
   val validProjectId   = 4115271L
   val invalidProjectId = 11111L
 
