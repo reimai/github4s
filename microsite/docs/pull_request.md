@@ -271,12 +271,13 @@ You can add reviewers for a pull request using `addReviewers`; it takes as argum
 As an example, if we wanted to add `torvalds` to the reviewers for pull request 139 of `47degrees/github4s`:
 
 ```scala mdoc:compile-only
-val listReviews = gh.pullRequests.addReviewers(
+import github4s.domain._
+val addReviewers = gh.pullRequests.addReviewers(
   "47deg",
   "github4s",
   139,
   RequestedReviewersRequest(List("torvalds")))
-val response = listReviews.unsafeRunSync()
+val response = reviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
   case Right(r) => println(r)
@@ -299,11 +300,12 @@ You can list the reviewers for a pull request using `listReviewers`; it takes as
 As an example, if we wanted to see all the reviewers for pull request 139 of `47degrees/github4s`:
 
 ```scala mdoc:compile-only
-val listReviews = gh.pullRequests.listReviewers(
+import github4s.domain._
+val listReviewers = gh.pullRequests.listReviewers(
   "47deg",
   "github4s",
   139)
-val response = listReviews.unsafeRunSync()
+val response = listReviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
   case Right(r) => println(r)
@@ -325,12 +327,13 @@ You can remove reviewers from a pull request using `removeReviewers`; it takes a
 As an example, if we wanted to remove `torvalds` from the reviewers for pull request 139 of `47degrees/github4s`:
 
 ```scala mdoc:compile-only
-val listReviews = gh.pullRequests.addReviewers(
+import github4s.domain._
+val removeReviewers = gh.pullRequests.removeReviewers(
   "47deg",
   "github4s",
   139,
   RequestedReviewersRequest(List("torvalds")))
-val response = listReviews.unsafeRunSync()
+val response = removeReviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
   case Right(r) => println(r)
