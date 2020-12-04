@@ -136,11 +136,11 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F]) extends Pull
     )
 
   override def addReviewers(
-                             owner: String,
-                             repo: String,
-                             pullRequest: Int,
-                             reviewers: ReviewersRequest,
-                             headers: Map[String, String]
+      owner: String,
+      repo: String,
+      pullRequest: Int,
+      reviewers: ReviewersRequest,
+      headers: Map[String, String]
   ): F[GHResponse[PullRequest]] =
     client.post[ReviewersRequest, PullRequest](
       s"repos/$owner/$repo/pulls/$pullRequest/requested_reviewers",
@@ -149,11 +149,11 @@ class PullRequestsInterpreter[F[_]](implicit client: HttpClient[F]) extends Pull
     )
 
   override def removeReviewers(
-                                owner: String,
-                                repo: String,
-                                pullRequest: Int,
-                                reviewers: ReviewersRequest,
-                                headers: Map[String, String]
+      owner: String,
+      repo: String,
+      pullRequest: Int,
+      reviewers: ReviewersRequest,
+      headers: Map[String, String]
   ): F[GHResponse[PullRequest]] =
     client.deleteWithBody[ReviewersRequest, PullRequest](
       s"repos/$owner/$repo/pulls/$pullRequest/requested_reviewers",

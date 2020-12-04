@@ -165,18 +165,18 @@ trait PullRequests[F[_]] {
   ): F[GHResponse[ReviewersResponse]]
 
   def addReviewers(
-                    owner: String,
-                    repo: String,
-                    pullRequest: Int,
-                    reviewers: ReviewersRequest,
-                    headers: Map[String, String] = Map()
+      owner: String,
+      repo: String,
+      pullRequest: Int,
+      reviewers: ReviewersRequest,
+      headers: Map[String, String] = Map()
   ): F[GHResponse[PullRequest]]
 
   def removeReviewers(
-                       owner: String,
-                       repo: String,
-                       pullRequest: Int,
-                       reviewers: ReviewersRequest,
-                       headers: Map[String, String] = Map()
+      owner: String,
+      repo: String,
+      pullRequest: Int,
+      reviewers: ReviewersRequest,
+      headers: Map[String, String] = Map()
   ): F[GHResponse[PullRequest]]
 }
