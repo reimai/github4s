@@ -296,7 +296,7 @@ trait PullRequestsSpec extends BaseIntegrationSpec {
     response.statusCode shouldBe unprocessableEntityStatusCode
   }
 
-  "PullRequests >> AddReviewers" should "request review from reviewers" taggedAs Integration in {
+  "PullRequests >> Add/List/Remove Reviewers" should "return the proper reviewers" taggedAs Integration in {
     val addReviewersResponse = clientResource
       .use { client =>
         Github[IO](client, accessToken).pullRequests
