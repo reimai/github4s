@@ -258,7 +258,6 @@ See [the API doc](https://developer.github.com/v3/pulls/reviews/#create-a-review
 ## Review requests
 
 This API allows you to operate on review requests. Reviewers can be users and/or teams. Usernames should be used without a leading '@' sign.
-**NOTE**: There might be problems with team reviewers and Github App authentication. 
 
 ### Add reviewers
 
