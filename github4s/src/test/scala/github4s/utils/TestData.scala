@@ -479,10 +479,10 @@ trait TestData {
   )
 
   val validRequestedReviewersRequest =
-    RequestedReviewersRequest(List(user.login), List(validSlug))
+    ReviewersRequest(List(user.login), List(validSlug))
 
   val validRequestedReviewersResponse =
-    RequestedReviewersResponse(List(user), List(team))
+    ReviewersResponse(List(user), List(team))
 
   val validProjectId   = 4115271L
   val invalidProjectId = 11111L
@@ -609,6 +609,6 @@ trait TestData {
     closed_at = None
   )
 
-  val validReviewers: RequestedReviewersRequest =
-    RequestedReviewersRequest(List(validUsername), List(validSlug))
+  val validReviewers: ReviewersRequest =
+    ReviewersRequest(List(validUsername), List(validSlug))
 }

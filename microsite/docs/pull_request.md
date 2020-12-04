@@ -276,7 +276,7 @@ val addReviewers = gh.pullRequests.addReviewers(
   "47deg",
   "github4s",
   139,
-  RequestedReviewersRequest(List("torvalds")))
+  ReviewersRequest(List("torvalds")))
 val response = addReviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
@@ -312,7 +312,7 @@ response.result match {
 }
 ```
 
-The `result` on the right is the matching [RequestedReviewersResponse][rr-scala], which contains all users and teams, whose review has been requested. 
+The `result` on the right is the matching ReviewersResponse, which contains all users and teams, whose review has been requested. 
 
 See [the API doc](https://docs.github.com/en/free-pro-team@latest/rest/reference/pulls#list-requested-reviewers-for-a-pull-request) for full reference.
 
@@ -332,7 +332,7 @@ val removeReviewers = gh.pullRequests.removeReviewers(
   "47deg",
   "github4s",
   139,
-  RequestedReviewersRequest(List("torvalds")))
+  ReviewersRequest(List("torvalds")))
 val response = removeReviewers.unsafeRunSync()
 response.result match {
   case Left(e) => println(s"Something went wrong: ${e.getMessage}")
@@ -349,4 +349,3 @@ As you can see, a few features of the pull request endpoint are missing. As a re
 to see a feature supported, feel free to create an issue and/or a pull request!
 
 [pr-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/PullRequest.scala
-[rr-scala]: https://github.com/47degrees/github4s/blob/master/github4s/src/main/scala/github4s/domain/RequestedReviewersResponse.scala

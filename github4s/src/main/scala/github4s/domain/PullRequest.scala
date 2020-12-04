@@ -142,12 +142,12 @@ final case object PRREventPending        extends PullRequestReviewEvent("PENDING
 
 case class CreateReviewComment(path: String, position: Int, body: String)
 
-final case class RequestedReviewersRequest(
+final case class ReviewersRequest(
     reviewers: List[String],
     team_reviewers: List[String] = Nil
 )
 
-final case class RequestedReviewersResponse(
+final case class ReviewersResponse(
     users: List[User],
     teams: List[Team]
 )

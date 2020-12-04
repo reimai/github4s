@@ -328,7 +328,7 @@ trait PullRequestsSpec extends BaseIntegrationSpec {
       }
       .unsafeRunSync()
 
-    testIsRight[RequestedReviewersResponse](
+    testIsRight[ReviewersResponse](
       getReviewersResponse,
       r => {
         r.users.map(_.login) shouldBe List(validUsername)

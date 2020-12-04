@@ -200,7 +200,7 @@ class PullRequestsSpec extends BaseSpec {
     val response: IO[GHResponse[PullRequestReview]] =
       IO(GHResponse(pullRequestReview.asRight, okStatusCode, Map.empty))
 
-    implicit val httpClientMock = httpClientMockPost[RequestedReviewersRequest, PullRequestReview](
+    implicit val httpClientMock = httpClientMockPost[ReviewersRequest, PullRequestReview](
       url =
         s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
       req = validRequestedReviewersRequest,
@@ -223,7 +223,7 @@ class PullRequestsSpec extends BaseSpec {
       IO(GHResponse(pullRequestReview.asRight, okStatusCode, Map.empty))
 
     implicit val httpClientMock =
-      httpClientMockDeleteWithBody[RequestedReviewersRequest, PullRequestReview](
+      httpClientMockDeleteWithBody[ReviewersRequest, PullRequestReview](
         url =
           s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
         req = validRequestedReviewersRequest,
@@ -242,10 +242,10 @@ class PullRequestsSpec extends BaseSpec {
   }
 
   "PullRequests.listReviewers" should "call to httpClient.get with the right parameters" in {
-    val response: IO[GHResponse[RequestedReviewersResponse]] =
+    val response: IO[GHResponse[ReviewersResponse]] =
       IO(GHResponse(validRequestedReviewersResponse.asRight, okStatusCode, Map.empty))
 
-    implicit val httpClientMock = httpClientMockGet[RequestedReviewersResponse](
+    implicit val httpClientMock = httpClientMockGet[ReviewersResponse](
       url =
         s"repos/$validRepoOwner/$validRepoName/pulls/$validPullRequestNumber/requested_reviewers",
       response = response
